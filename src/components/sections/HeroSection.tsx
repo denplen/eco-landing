@@ -1,3 +1,395 @@
+"use client";
+
+import Image from "next/image";
+import { useEffect, useState } from "react";
+
+const navItems = [
+  { label: "Услуги", href: "#services" },
+  { label: "Объекты", href: "#cases" },
+  { label: "Отзывы", href: "#reviews" },
+  { label: "Процесс", href: "#process" },
+  { label: "FAQ", href: "#faq" },
+  { label: "Контакты", href: "#contact" },
+];
+
+const surveyPurposes = [
+  "Жилое здание",
+  "Социальный объект",
+  "Промышленный объект",
+  "Площадной объект",
+  "Другое",
+];
+
+const workAreas = [
+  "Москва ЦАО",
+  "Москва САО",
+  "Москва СВАО",
+  "Москва ВАО",
+  "Москва ЮВАО",
+  "Москва ЮАО",
+  "Москва ЮЗАО",
+  "Москва ЗАО",
+  "Москва СЗАО",
+  "Зеленоград",
+  "Новая Москва",
+  "Балашиха",
+  "Бронницы",
+  "Воскресенский район",
+  "Дмитровский район",
+  "Долгопрудный",
+  "Домодедово",
+  "Жуковский",
+  "Звенигород",
+  "Истринский район",
+  "Клинский район",
+  "Королев",
+  "Котельники",
+  "Красногорский район",
+  "Ленинский район",
+  "Лыткарино",
+  "Люберецкий район",
+  "Мытищинский район",
+  "Наро-Фоминский район",
+  "Ногинский район",
+  "Одинцовский район",
+  "Павлово-Посадский район",
+  "Подольский район",
+  "Пушкинский район",
+  "Раменский район",
+  "Реутов",
+  "Рузский район",
+  "Сергиево-Посадский район",
+  "Солнечногорский район",
+  "Химки",
+  "Чеховский район",
+  "Щёлковский район",
+  "Электросталь",
+  "Другое",
+];
+
+const fieldClassName =
+  "min-h-12 w-full rounded-sm border border-[#0E2748]/15 bg-white px-4 text-sm text-[#0E2748] outline-none transition-colors placeholder:text-[#0E2748]/35 focus:border-[#F4A11A] focus:shadow-[0_0_0_3px_rgba(244,161,26,0.10)]";
+
+type EstimateFormProps = {
+  id?: string;
+  compact?: boolean;
+};
+
+function EstimateForm({ id, compact = false }: EstimateFormProps) {
+  return (
+    <form
+      id={id}
+      className={`bg-white text-[#0E2748] ${
+        compact
+          ? "border border-[#0E2748]/10 p-6 shadow-[0_28px_75px_rgba(14,39,72,0.16)] ring-1 ring-white/80 sm:p-8"
+          : "p-7 sm:p-9"
+      }`}
+    >
+      <div className="border-l-3 border-[#F4A11A] pl-4 sm:pl-5">
+        <h2 className="text-xl font-semibold tracking-tight sm:text-[1.65rem]">
+          Получите смету по вашему объекту
+        </h2>
+        <p className="mt-2 max-w-xl text-sm leading-6 text-[#0E2748]/58">
+          Укажите параметры объекта — специалист подготовит предложение по
+          составу, срокам и стоимости работ.
+        </p>
+      </div>
+
+      <fieldset className="mt-6">
+        <legend className="text-xs font-semibold uppercase tracking-[0.12em] text-[#0E2748]/45">
+          Параметры объекта
+        </legend>
+        <div className="mt-3 grid gap-3 sm:grid-cols-2">
+          <label>
+            <span className="sr-only">Назначение изысканий</span>
+            <select name="surveyPurpose" defaultValue="" className={fieldClassName}>
+              <option value="" disabled>
+                Назначение изысканий
+              </option>
+              {surveyPurposes.map((purpose) => (
+                <option key={purpose} value={purpose}>
+                  {purpose}
+                </option>
+              ))}
+            </select>
+          </label>
+
+          <label>
+            <span className="sr-only">Район проведения работ</span>
+            <select name="workArea" defaultValue="" className={fieldClassName}>
+              <option value="" disabled>
+                Район проведения работ
+              </option>
+              {workAreas.map((area) => (
+                <option key={area} value={area}>
+                  {area}
+                </option>
+              ))}
+            </select>
+          </label>
+
+          <label>
+            <span className="sr-only">Приблизительный объём работ</span>
+            <input
+              type="text"
+              name="workVolume"
+              placeholder="Площадь, протяжённость или описание"
+              className={fieldClassName}
+            />
+          </label>
+
+          <label>
+            <span className="sr-only">Кадастровый номер объекта</span>
+            <input
+              type="text"
+              name="cadastralNumber"
+              placeholder="Кадастровый номер, если есть"
+              className={fieldClassName}
+            />
+          </label>
+        </div>
+      </fieldset>
+
+      <fieldset className="mt-6">
+        <legend className="text-xs font-semibold uppercase tracking-[0.12em] text-[#0E2748]/45">
+          Контакты
+        </legend>
+        <div className="mt-3 grid gap-3 sm:grid-cols-3">
+          <label>
+            <span className="sr-only">Имя</span>
+            <input
+              type="text"
+              name="name"
+              placeholder="Имя"
+              className={fieldClassName}
+            />
+          </label>
+          <label>
+            <span className="sr-only">Телефон</span>
+            <input
+              type="tel"
+              name="phone"
+              placeholder="Телефон"
+              className={fieldClassName}
+            />
+          </label>
+          <label>
+            <span className="sr-only">Email</span>
+            <input
+              type="email"
+              name="email"
+              placeholder="Email"
+              className={fieldClassName}
+            />
+          </label>
+        </div>
+      </fieldset>
+
+      <div className="mt-6 grid gap-3 sm:grid-cols-[1fr_auto]">
+        <button
+          type="submit"
+          className="inline-flex min-h-12 items-center justify-center rounded-sm bg-[#F4A11A] px-6 py-3 text-base font-semibold text-[#0E2748] shadow-[0_8px_18px_rgba(244,161,26,0.22)] transition-colors hover:bg-[#e99412] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#F4A11A]"
+        >
+          Получить смету
+        </button>
+        <label className="inline-flex min-h-12 cursor-pointer items-center justify-center gap-2 rounded-sm border-2 border-[#0E2748]/55 bg-white px-5 py-3 text-sm font-semibold text-[#0E2748] transition-colors hover:border-[#F4A11A] hover:bg-[#F4A11A]/8 focus-within:border-[#F4A11A] focus-within:bg-[#F4A11A]/8">
+          <input type="file" name="brief" className="sr-only" />
+          <svg
+            aria-hidden="true"
+            className="size-4"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth="1.8"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="m18.375 12.739-7.693 7.693a4.5 4.5 0 0 1-6.364-6.364l10.94-10.94a3 3 0 0 1 4.243 4.243L8.552 18.32a1.5 1.5 0 0 1-2.121-2.121l7.693-7.693"
+            />
+          </svg>
+          Прикрепить ТЗ
+        </label>
+      </div>
+
+      <p className="mt-4 text-xs leading-5 text-[#0E2748]/42">
+        Ваши данные нужны только для подготовки коммерческого предложения. Мы не
+        рассылаем рекламные сообщения.
+      </p>
+    </form>
+  );
+}
+
 export function HeroSection() {
-  return <section>HeroSection</section>;
+  const [isEstimateModalOpen, setIsEstimateModalOpen] = useState(false);
+
+  useEffect(() => {
+    if (!isEstimateModalOpen) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setIsEstimateModalOpen(false);
+      }
+    };
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isEstimateModalOpen]);
+
+  return (
+    <>
+      <header className="sticky top-0 z-40 border-b border-[#0E2748]/10 bg-white/95 shadow-[0_4px_18px_rgba(14,39,72,0.05)] backdrop-blur-sm">
+        <div className="mx-auto flex min-h-16 max-w-7xl items-center justify-between gap-3 px-4 py-2 sm:px-6 lg:px-8">
+          <Image
+            src="/images/logo_horizont.svg"
+            alt="Главгеоком"
+            width={210}
+            height={60}
+            priority
+            className="h-auto w-32 shrink-0 sm:w-40"
+          />
+
+          <nav aria-label="Основная навигация" className="hidden xl:block">
+            <ul className="flex items-center gap-5">
+              {navItems.map((item) => (
+                <li key={item.href}>
+                  <a
+                    href={item.href}
+                    className="group relative py-2 text-sm font-medium text-[#0E2748]/65 transition-colors hover:text-[#F4A11A]"
+                  >
+                    {item.label}
+                    <span className="absolute inset-x-0 bottom-0 h-px origin-left scale-x-0 bg-[#F4A11A] transition-transform group-hover:scale-x-100" />
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          <div className="flex min-w-0 items-center gap-2 sm:gap-3">
+            <div className="hidden text-right lg:block">
+              <a
+                href="tel:+74993808104"
+                className="block text-sm font-semibold text-[#0E2748] transition-colors hover:text-[#F4A11A]"
+              >
+                +7 (499) 380-81-04
+              </a>
+              <a
+                href="mailto:info@glavgeocom.ru"
+                className="block text-xs text-[#0E2748]/48 transition-colors hover:text-[#0E2748]"
+              >
+                info@glavgeocom.ru
+              </a>
+            </div>
+
+            <a
+              href="#contact"
+              aria-label="Связаться в Telegram"
+              className="hidden size-8 items-center justify-center rounded-full border border-[#0E2748]/15 text-[10px] font-bold text-[#0E2748] transition-colors hover:border-[#F4A11A] hover:text-[#F4A11A] sm:inline-flex"
+            >
+              TG
+            </a>
+            <a
+              href="#contact"
+              aria-label="Связаться в MAX"
+              className="hidden size-8 items-center justify-center rounded-full border border-[#0E2748]/15 text-[10px] font-bold text-[#0E2748] transition-colors hover:border-[#F4A11A] hover:text-[#F4A11A] sm:inline-flex"
+            >
+              MAX
+            </a>
+            <button
+              type="button"
+              onClick={() => setIsEstimateModalOpen(true)}
+              className="inline-flex min-h-9 items-center justify-center rounded-sm bg-[#F4A11A] px-3 py-2 text-xs font-semibold text-[#0E2748] transition-colors hover:bg-[#e99412] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#F4A11A] sm:px-4 sm:text-sm"
+            >
+              Получить смету
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <section
+        className="relative overflow-hidden bg-[#F7F9FC] bg-cover bg-center text-[#0E2748]"
+        style={{
+          backgroundImage: "url('/images/hero-bg-engineering.png')",
+        }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-r from-[#F7F9FC]/31 via-[#F7F9FC]/27 to-[#F7F9FC]/22" />
+        <div className="absolute inset-0 bg-white/4" />
+
+        <div className="relative mx-auto grid max-w-7xl gap-12 px-4 py-16 sm:px-6 sm:py-20 lg:min-h-[calc(100svh-4rem)] lg:grid-cols-[0.88fr_1.12fr] lg:items-center lg:gap-16 lg:px-8 lg:py-24">
+          <div className="max-w-xl">
+            <p className="inline-flex items-center gap-2 text-sm font-semibold text-[#0E2748]/62">
+              <span className="size-2 rounded-full bg-[#F4A11A]" />
+              Инженерные изыскания в Москве и Московской области
+            </p>
+
+            <h1 className="mt-6 text-4xl font-semibold leading-[1.08] tracking-tight text-balance sm:text-5xl lg:text-[3.05rem]">
+              Инженерно-экологические изыскания с сопровождением экспертизы
+            </h1>
+
+            <p className="mt-7 max-w-lg text-lg leading-8 text-[#0E2748]/66">
+              Для застройщиков, технических заказчиков и проектировщиков.
+              Подготовим технический отчёт для проектирования и поможем закрыть
+              замечания экспертизы в зоне нашей ответственности.
+            </p>
+
+            <p className="mt-8 text-sm font-semibold leading-7 text-[#0E2748]/65 sm:text-base">
+              20+ лет на рынке
+              <span aria-hidden="true" className="mx-2 text-[#F4A11A]">
+                ·
+              </span>
+              10 000+ объектов
+              <span aria-hidden="true" className="mx-2 text-[#F4A11A]">
+                ·
+              </span>
+              Член СРО
+              <span aria-hidden="true" className="mx-2 text-[#F4A11A]">
+                ·
+              </span>
+              Москва и МО
+            </p>
+          </div>
+
+          <div className="relative mx-auto w-full max-w-2xl lg:max-w-none">
+            <div className="absolute -inset-6 hidden border border-[#0E2748]/8 bg-white/25 backdrop-blur-[2px] lg:block" />
+            <div className="absolute -bottom-5 -right-5 hidden size-28 border-b-2 border-r-2 border-[#F4A11A]/55 lg:block" />
+            <div className="relative">
+              <EstimateForm id="hero-estimate-form" compact />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {isEstimateModalOpen && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label="Получить смету"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-[#0E2748]/74 p-3 backdrop-blur-[6px] sm:p-6"
+          onMouseDown={(event) => {
+            if (event.currentTarget === event.target) {
+              setIsEstimateModalOpen(false);
+            }
+          }}
+        >
+          <div className="relative max-h-[calc(100vh-1.5rem)] w-full max-w-3xl overflow-y-auto border border-[#F4A11A]/35 bg-white shadow-[0_40px_120px_rgba(0,0,0,0.42)] ring-1 ring-white/60 sm:max-h-[calc(100vh-3rem)]">
+            <button
+              type="button"
+              aria-label="Закрыть окно"
+              onClick={() => setIsEstimateModalOpen(false)}
+              className="absolute right-3 top-3 z-10 inline-flex size-9 items-center justify-center rounded-full border border-[#0E2748]/12 bg-white text-xl leading-none text-[#0E2748]/60 transition-colors hover:border-[#F4A11A] hover:text-[#0E2748]"
+            >
+              ×
+            </button>
+            <EstimateForm />
+          </div>
+        </div>
+      )}
+    </>
+  );
 }
