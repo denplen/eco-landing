@@ -81,12 +81,12 @@ function EstimateForm({ id, compact = false }: EstimateFormProps) {
       id={id}
       className={`bg-white text-[#0E2748] ${
         compact
-          ? "border border-[#0E2748]/10 p-6 shadow-[0_28px_75px_rgba(14,39,72,0.16)] ring-1 ring-white/80 sm:p-8"
-          : "p-7 sm:p-9"
+          ? "border border-[#0E2748]/10 p-6 shadow-[0_28px_75px_rgba(14,39,72,0.16)] ring-1 ring-white/80 sm:p-9"
+          : "p-7 sm:p-10"
       }`}
     >
       <div className="border-l-3 border-[#F4A11A] pl-4 sm:pl-5">
-        <h2 className="text-xl font-semibold tracking-tight sm:text-[1.65rem]">
+        <h2 className="text-xl font-semibold leading-tight tracking-tight sm:text-[1.65rem]">
           Получите смету по вашему объекту
         </h2>
         <p className="mt-2 max-w-xl text-sm leading-6 text-[#0E2748]/58">
@@ -188,11 +188,17 @@ function EstimateForm({ id, compact = false }: EstimateFormProps) {
       <div className="mt-6 grid gap-3 sm:grid-cols-[1fr_auto]">
         <button
           type="submit"
-          className="inline-flex min-h-12 items-center justify-center rounded-sm bg-[#F4A11A] px-6 py-3 text-base font-semibold text-[#0E2748] shadow-[0_8px_18px_rgba(244,161,26,0.22)] transition-colors hover:bg-[#e99412] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#F4A11A]"
+          className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-sm bg-[#F4A11A] px-6 py-3 text-base font-semibold text-[#0E2748] shadow-[0_8px_18px_rgba(244,161,26,0.22)] transition-all duration-200 hover:-translate-y-px hover:bg-[#e99412] hover:shadow-[0_10px_22px_rgba(244,161,26,0.28)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#F4A11A]"
         >
           Получить смету
+          <span
+            aria-hidden="true"
+            className="transition-transform duration-200 group-hover:translate-x-1"
+          >
+            →
+          </span>
         </button>
-        <label className="inline-flex min-h-12 cursor-pointer items-center justify-center gap-2 rounded-sm border-2 border-[#0E2748]/55 bg-white px-5 py-3 text-sm font-semibold text-[#0E2748] transition-colors hover:border-[#F4A11A] hover:bg-[#F4A11A]/8 focus-within:border-[#F4A11A] focus-within:bg-[#F4A11A]/8">
+        <label className="inline-flex min-h-12 cursor-pointer items-center justify-center gap-2 rounded-sm border-2 border-[#0E2748]/55 bg-white px-5 py-3 text-sm font-semibold text-[#0E2748] transition-all duration-200 hover:border-[#F4A11A] hover:bg-[#F4A11A]/8 hover:shadow-sm focus-within:border-[#F4A11A] focus-within:bg-[#F4A11A]/8">
           <input type="file" name="brief" className="sr-only" />
           <svg
             aria-hidden="true"
@@ -208,7 +214,7 @@ function EstimateForm({ id, compact = false }: EstimateFormProps) {
               d="m18.375 12.739-7.693 7.693a4.5 4.5 0 0 1-6.364-6.364l10.94-10.94a3 3 0 0 1 4.243 4.243L8.552 18.32a1.5 1.5 0 0 1-2.121-2.121l7.693-7.693"
             />
           </svg>
-          Прикрепить ТЗ
+          Прикрепить ТЗ / схему
         </label>
       </div>
 
@@ -222,13 +228,28 @@ function EstimateForm({ id, compact = false }: EstimateFormProps) {
 
 export function HeroSection() {
   const [isEstimateModalOpen, setIsEstimateModalOpen] = useState(false);
+  const [isEstimateModalVisible, setIsEstimateModalVisible] = useState(false);
+
+  const openEstimateModal = () => {
+    setIsEstimateModalOpen(true);
+    requestAnimationFrame(() => {
+      setIsEstimateModalVisible(true);
+    });
+  };
+
+  const closeEstimateModal = () => {
+    setIsEstimateModalVisible(false);
+    window.setTimeout(() => {
+      setIsEstimateModalOpen(false);
+    }, 200);
+  };
 
   useEffect(() => {
     if (!isEstimateModalOpen) return;
 
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
-        setIsEstimateModalOpen(false);
+        closeEstimateModal();
       }
     };
 
@@ -245,7 +266,7 @@ export function HeroSection() {
   return (
     <>
       <header className="sticky top-0 z-40 border-b border-[#0E2748]/10 bg-white/95 shadow-[0_4px_18px_rgba(14,39,72,0.05)] backdrop-blur-sm">
-        <div className="mx-auto flex min-h-16 max-w-7xl items-center justify-between gap-3 px-4 py-2 sm:px-6 lg:px-8">
+        <div className="mx-auto flex min-h-[4.5rem] max-w-7xl items-center justify-between gap-3 px-4 py-3 sm:px-6 lg:px-8">
           <Image
             src="/images/logo_horizont.svg"
             alt="Главгеоком"
@@ -261,7 +282,7 @@ export function HeroSection() {
                 <li key={item.href}>
                   <a
                     href={item.href}
-                    className="group relative py-2 text-sm font-medium text-[#0E2748]/65 transition-colors hover:text-[#F4A11A]"
+                    className="group relative py-2 text-sm font-medium text-[#0E2748]/65 transition-colors duration-200 hover:text-[#F4A11A]"
                   >
                     {item.label}
                     <span className="absolute inset-x-0 bottom-0 h-px origin-left scale-x-0 bg-[#F4A11A] transition-transform group-hover:scale-x-100" />
@@ -303,10 +324,16 @@ export function HeroSection() {
             </a>
             <button
               type="button"
-              onClick={() => setIsEstimateModalOpen(true)}
-              className="inline-flex min-h-9 items-center justify-center rounded-sm bg-[#F4A11A] px-3 py-2 text-xs font-semibold text-[#0E2748] transition-colors hover:bg-[#e99412] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#F4A11A] sm:px-4 sm:text-sm"
+              onClick={openEstimateModal}
+              className="group inline-flex min-h-9 items-center justify-center gap-1.5 rounded-sm bg-[#F4A11A] px-3 py-2 text-xs font-semibold text-[#0E2748] transition-all duration-200 hover:-translate-y-px hover:bg-[#e99412] hover:shadow-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#F4A11A] sm:px-4 sm:text-sm"
             >
               Получить смету
+              <span
+                aria-hidden="true"
+                className="transition-transform duration-200 group-hover:translate-x-1"
+              >
+                →
+              </span>
             </button>
           </div>
         </div>
@@ -320,25 +347,26 @@ export function HeroSection() {
       >
         <div className="absolute inset-0 bg-gradient-to-r from-[#F7F9FC]/31 via-[#F7F9FC]/27 to-[#F7F9FC]/22" />
         <div className="absolute inset-0 bg-white/4" />
+        <div className="absolute inset-y-0 left-0 w-[62%] bg-gradient-to-r from-white/72 via-white/35 to-transparent" />
 
-        <div className="relative mx-auto grid max-w-7xl gap-12 px-4 py-16 sm:px-6 sm:py-20 lg:min-h-[calc(100svh-4rem)] lg:grid-cols-[0.88fr_1.12fr] lg:items-center lg:gap-16 lg:px-8 lg:py-24">
+        <div className="relative mx-auto grid max-w-7xl gap-12 px-4 py-16 sm:px-6 sm:py-20 lg:min-h-[calc(100svh-4.5rem)] lg:grid-cols-[0.88fr_1.12fr] lg:items-center lg:gap-16 lg:px-8 lg:py-24">
           <div className="max-w-xl">
-            <p className="inline-flex items-center gap-2 text-sm font-semibold text-[#0E2748]/62">
+            <p className="inline-flex items-center gap-2 text-sm font-semibold text-[#0E2748]/72">
               <span className="size-2 rounded-full bg-[#F4A11A]" />
               Инженерные изыскания в Москве и Московской области
             </p>
 
-            <h1 className="mt-6 text-4xl font-semibold leading-[1.08] tracking-tight text-balance sm:text-5xl lg:text-[3.05rem]">
+            <h1 className="mt-6 text-4xl font-semibold leading-[1.08] tracking-tight text-balance sm:text-5xl lg:text-[3rem]">
               Инженерно-экологические изыскания с сопровождением экспертизы
             </h1>
 
-            <p className="mt-7 max-w-lg text-lg leading-8 text-[#0E2748]/66">
+            <p className="mt-7 max-w-lg text-lg leading-8 text-[#0E2748]/78">
               Для застройщиков, технических заказчиков и проектировщиков.
               Подготовим технический отчёт для проектирования и поможем закрыть
               замечания экспертизы в зоне нашей ответственности.
             </p>
 
-            <p className="mt-8 text-sm font-semibold leading-7 text-[#0E2748]/65 sm:text-base">
+            <p className="mt-8 text-sm font-semibold leading-7 text-[#0E2748]/78 sm:text-base">
               20+ лет на рынке
               <span aria-hidden="true" className="mx-2 text-[#F4A11A]">
                 ·
@@ -370,19 +398,27 @@ export function HeroSection() {
           role="dialog"
           aria-modal="true"
           aria-label="Получить смету"
-          className="fixed inset-0 z-50 flex items-center justify-center bg-[#0E2748]/74 p-3 backdrop-blur-[6px] sm:p-6"
+          className={`fixed inset-0 z-50 flex items-center justify-center bg-[#0E2748]/74 p-3 backdrop-blur-[6px] transition-opacity duration-200 sm:p-6 ${
+            isEstimateModalVisible ? "opacity-100" : "opacity-0"
+          }`}
           onMouseDown={(event) => {
             if (event.currentTarget === event.target) {
-              setIsEstimateModalOpen(false);
+              closeEstimateModal();
             }
           }}
         >
-          <div className="relative max-h-[calc(100vh-1.5rem)] w-full max-w-3xl overflow-y-auto border border-[#F4A11A]/35 bg-white shadow-[0_40px_120px_rgba(0,0,0,0.42)] ring-1 ring-white/60 sm:max-h-[calc(100vh-3rem)]">
+          <div
+            className={`relative max-h-[calc(100vh-1.5rem)] w-full max-w-3xl overflow-y-auto border border-[#F4A11A]/35 bg-white shadow-[0_40px_120px_rgba(0,0,0,0.42)] ring-1 ring-white/60 transition-all duration-200 sm:max-h-[calc(100vh-3rem)] ${
+              isEstimateModalVisible
+                ? "translate-y-0 scale-100 opacity-100"
+                : "translate-y-2 scale-[0.985] opacity-0"
+            }`}
+          >
             <button
               type="button"
               aria-label="Закрыть окно"
-              onClick={() => setIsEstimateModalOpen(false)}
-              className="absolute right-3 top-3 z-10 inline-flex size-9 items-center justify-center rounded-full border border-[#0E2748]/12 bg-white text-xl leading-none text-[#0E2748]/60 transition-colors hover:border-[#F4A11A] hover:text-[#0E2748]"
+              onClick={closeEstimateModal}
+              className="absolute right-3 top-3 z-10 inline-flex size-9 items-center justify-center rounded-full border border-[#0E2748]/12 bg-white text-xl leading-none text-[#0E2748]/60 transition-all duration-200 hover:border-[#F4A11A] hover:text-[#0E2748] hover:shadow-sm"
             >
               ×
             </button>
