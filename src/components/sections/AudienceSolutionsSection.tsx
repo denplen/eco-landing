@@ -43,7 +43,10 @@ const audiences = [
 
 export function AudienceSolutionsSection() {
   return (
-    <section className="bg-[#F7F9FC] py-16 text-[#0E2748] sm:py-20 lg:py-24">
+    <section
+      id="audience"
+      className="scroll-mt-24 bg-[#F7F9FC] py-16 text-[#0E2748] sm:py-20 lg:py-24"
+    >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl">
           <p className="inline-flex items-center gap-2 text-sm font-semibold text-[#0E2748]/60">

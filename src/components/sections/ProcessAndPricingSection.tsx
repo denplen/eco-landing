@@ -1,3 +1,7 @@
 export function ProcessAndPricingSection() {
-  return <section>ProcessAndPricingSection</section>;
+  return (
+    <section id="process" className="scroll-mt-24">
+      ProcessAndPricingSection
+    </section>
+  );
 }

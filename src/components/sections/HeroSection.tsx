@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState, type MouseEvent } from "react";
 import { CtaButton } from "@/components/ui/CtaButton";
 
 const navItems = [
@@ -10,7 +10,7 @@ const navItems = [
   { label: "Отзывы", href: "#reviews" },
   { label: "Процесс", href: "#process" },
   { label: "FAQ", href: "#faq" },
-  { label: "Контакты", href: "#contact" },
+  { label: "Контакты", href: "#contacts" },
 ];
 
 const objectTypes = [
@@ -279,6 +279,8 @@ function EstimateForm({ id, compact = false }: EstimateFormProps) {
 export function HeroSection() {
   const [isEstimateModalOpen, setIsEstimateModalOpen] = useState(false);
   const [isEstimateModalVisible, setIsEstimateModalVisible] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const [activeNavHref, setActiveNavHref] = useState("");
 
   const openEstimateModal = useCallback(() => {
     setIsEstimateModalOpen(true);
@@ -292,6 +294,21 @@ export function HeroSection() {
     window.setTimeout(() => {
       setIsEstimateModalOpen(false);
     }, 200);
+  };
+
+  const handleNavClick = (
+    event: MouseEvent<HTMLAnchorElement>,
+    href: string,
+  ) => {
+    event.preventDefault();
+
+    const target = document.querySelector<HTMLElement>(href);
+    if (!target) return;
+
+    target.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
   };
 
   useEffect(() => {
@@ -321,6 +338,43 @@ export function HeroSection() {
     };
   }, [openEstimateModal]);
 
+  useEffect(() => {
+    const updateScrollState = () => {
+      const scrollableHeight =
+        document.documentElement.scrollHeight - window.innerHeight;
+      const progress =
+        scrollableHeight > 0 ? (window.scrollY / scrollableHeight) * 100 : 0;
+
+      setScrollProgress(Math.min(100, Math.max(0, progress)));
+
+      const headerOffset = 112;
+      let currentHref = "";
+      let closestTop = Number.NEGATIVE_INFINITY;
+
+      navItems.forEach((item) => {
+        const section = document.querySelector<HTMLElement>(item.href);
+        if (!section) return;
+
+        const top = section.getBoundingClientRect().top;
+        if (top <= headerOffset && top > closestTop) {
+          closestTop = top;
+          currentHref = item.href;
+        }
+      });
+
+      setActiveNavHref(currentHref);
+    };
+
+    updateScrollState();
+    window.addEventListener("scroll", updateScrollState, { passive: true });
+    window.addEventListener("resize", updateScrollState);
+
+    return () => {
+      window.removeEventListener("scroll", updateScrollState);
+      window.removeEventListener("resize", updateScrollState);
+    };
+  }, []);
+
   return (
     <>
       <header className="sticky top-0 z-40 border-b border-[#0E2748]/10 bg-white/95 shadow-[0_4px_18px_rgba(14,39,72,0.05)] backdrop-blur-sm">
@@ -337,13 +391,24 @@ export function HeroSection() {
           <nav aria-label="Основная навигация" className="hidden xl:block">
             <ul className="flex items-center gap-5">
               {navItems.map((item) => (
-                <li key={item.href}>
+                <li key={`${item.label}-${item.href}`}>
                   <a
                     href={item.href}
-                    className="group relative py-2 text-sm font-medium text-[#0E2748]/65 transition-colors duration-200 hover:text-[#F4A11A]"
+                    onClick={(event) => handleNavClick(event, item.href)}
+                    className={`group relative py-2 text-sm font-medium transition-colors duration-200 hover:text-[#F4A11A] ${
+                      activeNavHref === item.href
+                        ? "text-[#F4A11A]"
+                        : "text-[#0E2748]/65"
+                    }`}
                   >
                     {item.label}
-                    <span className="absolute inset-x-0 bottom-0 h-px origin-left scale-x-0 bg-[#F4A11A] transition-transform group-hover:scale-x-100" />
+                    <span
+                      className={`absolute inset-x-0 bottom-0 h-px origin-left bg-[#F4A11A] transition-transform duration-200 group-hover:scale-x-100 ${
+                        activeNavHref === item.href
+                          ? "scale-x-100"
+                          : "scale-x-0"
+                      }`}
+                    />
                   </a>
                 </li>
               ))}
@@ -389,10 +454,17 @@ export function HeroSection() {
             </CtaButton>
           </div>
         </div>
+        <div className="h-0.5 w-full bg-[#0E2748]/5">
+          <div
+            className="h-full bg-[#F4A11A] transition-[width] duration-150"
+            style={{ width: `${scrollProgress}%` }}
+          />
+        </div>
       </header>
 
       <section
-        className="relative overflow-hidden bg-[#F7F9FC] bg-cover bg-center text-[#0E2748]"
+        id="top"
+        className="relative scroll-mt-24 overflow-hidden bg-[#F7F9FC] bg-cover bg-center text-[#0E2748]"
         style={{
           backgroundImage: "url('/images/hero-bg-engineering.png')",
         }}

@@ -37,7 +37,10 @@ const customerBenefits = [
 
 export function TrustStatsSection() {
   return (
-    <section className="bg-white py-16 text-[#0E2748] sm:py-20 lg:py-22">
+    <section
+      id="trust"
+      className="scroll-mt-24 bg-white py-16 text-[#0E2748] sm:py-20 lg:py-22"
+    >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl">
           <p className="inline-flex items-center gap-2 text-sm font-semibold text-[#0E2748]/60">
