@@ -1,3 +1,199 @@
+"use client";
+
+import { CtaButton } from "@/components/ui/CtaButton";
+
+const workStages = [
+  {
+    number: "01",
+    title: "Подготовка",
+    points: ["Анализ исходных данных", "Разработка программы изысканий"],
+  },
+  {
+    number: "02",
+    title: "Полевые работы",
+    points: [
+      "Обследование территории",
+      "Отбор проб",
+      "Фиксация фактических условий",
+    ],
+  },
+  {
+    number: "03",
+    title: "Исследования и обработка",
+    points: [
+      "Лабораторные исследования",
+      "Оценка экологических ограничений",
+      "Камеральная обработка материалов",
+    ],
+  },
+  {
+    number: "04",
+    title: "Технический отчёт",
+    points: [
+      "Итоговый комплект материалов",
+      "Текстовые и графические приложения",
+      "Ответы на замечания по выполненным работам",
+    ],
+  },
+];
+
+const deliverables = [
+  "Программа инженерно-экологических изысканий",
+  "Протоколы полевых и лабораторных исследований",
+  "Оценка экологического состояния территории",
+  "Сведения об ограничениях и зонах с особыми условиями использования",
+  "Прогноз возможного воздействия",
+  "Рекомендации по экологическому мониторингу",
+  "Технический отчёт с текстовыми и графическими приложениями",
+  "Ответы на замечания по выполненным работам",
+];
+
 export function ScopeAndDeliverablesSection() {
-  return <section>ScopeAndDeliverablesSection</section>;
+  return (
+    <section className="bg-white py-16 text-[#0E2748] sm:py-20 lg:py-24">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="max-w-3xl">
+          <p className="inline-flex items-center gap-2 text-sm font-semibold text-[#0E2748]/60">
+            <span className="size-2 rounded-full bg-[#F4A11A]" />
+            Состав работ и результат
+          </p>
+          <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-balance sm:text-4xl">
+            Что входит в инженерно-экологические изыскания
+          </h2>
+          <p className="mt-5 max-w-2xl text-lg leading-8 text-[#0E2748]/65">
+            Формируем состав работ под объект, требования проектирования и
+            экспертизы. На выходе заказчик получает технический отчёт и
+            материалы, которые можно использовать в проектной документации.
+          </p>
+        </div>
+
+        <div className="mt-12">
+          <h3 className="text-2xl font-semibold tracking-tight text-[#0E2748]">
+            Как проходит работа
+          </h3>
+
+          <ol className="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {workStages.map((stage) => (
+              <li
+                key={stage.number}
+                className="group relative min-h-60 overflow-hidden border border-[#0E2748]/10 bg-[#F7F9FC] p-6 shadow-[0_12px_30px_rgba(14,39,72,0.05)] transition-all duration-200 hover:-translate-y-[3px] hover:border-[#F4A11A]/55 hover:shadow-[0_18px_40px_rgba(14,39,72,0.10)]"
+              >
+                <div className="absolute inset-x-0 top-0 h-1 bg-[#F4A11A]/75 transition-colors duration-200 group-hover:bg-[#F4A11A]" />
+                <span className="text-xs font-semibold uppercase tracking-[0.16em] text-[#F4A11A]">
+                  Этап {stage.number}
+                </span>
+                <h4 className="mt-4 text-xl font-semibold tracking-tight text-[#0E2748]">
+                  {stage.title}
+                </h4>
+                <ul className="mt-5 space-y-3">
+                  {stage.points.map((point) => (
+                    <li
+                      key={point}
+                      className="flex items-start gap-2.5 text-sm leading-6 text-[#0E2748]/65"
+                    >
+                      <span className="mt-2 size-1.5 shrink-0 rounded-full bg-[#F4A11A]" />
+                      {point}
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            ))}
+          </ol>
+        </div>
+
+        <div className="mt-10 border border-[#0E2748]/10 bg-white p-6 shadow-[0_18px_46px_rgba(14,39,72,0.07)] sm:p-8">
+          <h3 className="text-2xl font-semibold tracking-tight text-[#0E2748]">
+            Что получает заказчик
+          </h3>
+          <ul className="mt-6 grid gap-x-8 gap-y-4 sm:grid-cols-2">
+            {deliverables.map((deliverable) => (
+              <li
+                key={deliverable}
+                className="flex items-start gap-3 border-t border-[#0E2748]/8 pt-4 text-sm leading-6 text-[#0E2748]/70 sm:text-base"
+              >
+                <span className="mt-1.5 flex size-5 shrink-0 items-center justify-center rounded-full bg-[#F4A11A]/12 text-[#F4A11A]">
+                  <svg
+                    aria-hidden="true"
+                    className="size-3"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth="2.5"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="m5 12 4 4L19 6"
+                    />
+                  </svg>
+                </span>
+                {deliverable}
+              </li>
+            ))}
+          </ul>
+
+          <div className="mt-8 border border-[#F4A11A]/40 border-l-3 bg-[#F7F9FC] p-5 sm:flex sm:items-center sm:justify-between sm:gap-8">
+            <div className="max-w-3xl">
+              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#F4A11A]">
+                Главный результат
+              </p>
+              <h4 className="mt-2 text-lg font-semibold text-[#0E2748]">
+                Технический отчёт
+              </h4>
+              <p className="mt-2 text-sm leading-6 text-[#0E2748]/62">
+                Технический отчёт показывает состав выполненных работ,
+                результаты исследований, выводы и материалы, которые
+                используются проектировщиками и экспертизой.
+              </p>
+            </div>
+            <a
+              href="https://glavgeocom.ru/netcat_files/4/22/TO_Ekologicheskie_izyskaniya_primer_.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-4 inline-flex min-h-10 shrink-0 items-center justify-center gap-2 rounded-sm border border-[#0E2748]/30 bg-white px-4 py-2.5 text-sm font-semibold text-[#0E2748] transition-colors duration-200 hover:border-[#F4A11A] hover:bg-[#F4A11A]/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#F4A11A] sm:mt-0"
+            >
+              <svg
+                aria-hidden="true"
+                className="size-4 text-[#F4A11A]"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth="1.8"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5A3.375 3.375 0 0 0 10.125 2.25H8.25m0 12.75h7.5m-7.5 3h4.5m-6.75 3.75h12A2.25 2.25 0 0 0 20.25 19.5V8.906a2.25 2.25 0 0 0-.659-1.591l-4.906-4.906a2.25 2.25 0 0 0-1.591-.659H6A2.25 2.25 0 0 0 3.75 4v15.5A2.25 2.25 0 0 0 6 21.75Z"
+                />
+              </svg>
+              Посмотреть пример отчёта
+            </a>
+          </div>
+        </div>
+
+        <div className="mt-12 border border-[#0E2748]/10 bg-[#F7F9FC] p-6 sm:flex sm:items-center sm:justify-between sm:gap-8 sm:p-8">
+          <div className="max-w-2xl">
+            <h3 className="text-xl font-semibold tracking-tight text-[#0E2748] sm:text-2xl">
+              Хотите понять, какие работы потребуются вашему объекту?
+            </h3>
+            <p className="mt-2 text-sm leading-6 text-[#0E2748]/62 sm:text-base">
+              Отправьте параметры объекта — специалист подготовит смету и
+              подскажет, какой состав исследований нужен для проектирования и
+              экспертизы.
+            </p>
+          </div>
+
+          <CtaButton
+            variant="primary"
+            onClick={() =>
+              window.dispatchEvent(new CustomEvent("open-estimate-modal"))
+            }
+            className="mt-5 w-full shrink-0 sm:mt-0 sm:w-auto"
+          >
+            Получить смету
+          </CtaButton>
+        </div>
+      </div>
+    </section>
+  );
 }
