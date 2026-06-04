@@ -1,7 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import { CtaButton } from "@/components/ui/CtaButton";
 
 const navItems = [
   { label: "Услуги", href: "#services" },
@@ -12,12 +13,22 @@ const navItems = [
   { label: "Контакты", href: "#contact" },
 ];
 
-const surveyPurposes = [
+const objectTypes = [
   "Жилое здание",
   "Социальный объект",
   "Промышленный объект",
   "Площадной объект",
+  "Линейный объект",
   "Другое",
+];
+
+const projectStages = [
+  "Подготовка к проектированию",
+  "Прохождение экспертизы",
+  "Есть замечания экспертизы",
+  "Нужно КП для тендера",
+  "Реконструкция объекта",
+  "Не знаю, нужна консультация",
 ];
 
 const workAreas = [
@@ -90,8 +101,8 @@ function EstimateForm({ id, compact = false }: EstimateFormProps) {
           Получите смету по вашему объекту
         </h2>
         <p className="mt-2 max-w-xl text-sm leading-6 text-[#0E2748]/58">
-          Укажите параметры объекта — специалист подготовит предложение по
-          составу, срокам и стоимости работ.
+          Укажите параметры объекта и задачу — специалист подготовит предложение
+          по составу, срокам и стоимости работ.
         </p>
       </div>
 
@@ -101,14 +112,28 @@ function EstimateForm({ id, compact = false }: EstimateFormProps) {
         </legend>
         <div className="mt-3 grid gap-3 sm:grid-cols-2">
           <label>
-            <span className="sr-only">Назначение изысканий</span>
-            <select name="surveyPurpose" defaultValue="" className={fieldClassName}>
+            <span className="sr-only">Тип объекта</span>
+            <select name="objectType" defaultValue="" className={fieldClassName}>
               <option value="" disabled>
-                Назначение изысканий
+                Тип объекта
               </option>
-              {surveyPurposes.map((purpose) => (
-                <option key={purpose} value={purpose}>
-                  {purpose}
+              {objectTypes.map((objectType) => (
+                <option key={objectType} value={objectType}>
+                  {objectType}
+                </option>
+              ))}
+            </select>
+          </label>
+
+          <label>
+            <span className="sr-only">Задача / этап проекта</span>
+            <select name="projectStage" defaultValue="" className={fieldClassName}>
+              <option value="" disabled>
+                Задача / этап проекта
+              </option>
+              {projectStages.map((stage) => (
+                <option key={stage} value={stage}>
+                  {stage}
                 </option>
               ))}
             </select>
@@ -186,18 +211,12 @@ function EstimateForm({ id, compact = false }: EstimateFormProps) {
       </fieldset>
 
       <div className="mt-6 grid gap-3 sm:grid-cols-[1fr_auto]">
-        <button
+        <CtaButton
           type="submit"
-          className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-sm bg-[#F4A11A] px-6 py-3 text-base font-semibold text-[#0E2748] shadow-[0_8px_18px_rgba(244,161,26,0.22)] transition-all duration-200 hover:-translate-y-px hover:bg-[#e99412] hover:shadow-[0_10px_22px_rgba(244,161,26,0.28)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#F4A11A]"
+          variant="primary"
         >
           Получить смету
-          <span
-            aria-hidden="true"
-            className="transition-transform duration-200 group-hover:translate-x-1"
-          >
-            →
-          </span>
-        </button>
+        </CtaButton>
         <label className="inline-flex min-h-12 cursor-pointer items-center justify-center gap-2 rounded-sm border-2 border-[#0E2748]/55 bg-white px-5 py-3 text-sm font-semibold text-[#0E2748] transition-all duration-200 hover:border-[#F4A11A] hover:bg-[#F4A11A]/8 hover:shadow-sm focus-within:border-[#F4A11A] focus-within:bg-[#F4A11A]/8">
           <input type="file" name="brief" className="sr-only" />
           <svg
@@ -230,12 +249,12 @@ export function HeroSection() {
   const [isEstimateModalOpen, setIsEstimateModalOpen] = useState(false);
   const [isEstimateModalVisible, setIsEstimateModalVisible] = useState(false);
 
-  const openEstimateModal = () => {
+  const openEstimateModal = useCallback(() => {
     setIsEstimateModalOpen(true);
     requestAnimationFrame(() => {
       setIsEstimateModalVisible(true);
     });
-  };
+  }, []);
 
   const closeEstimateModal = () => {
     setIsEstimateModalVisible(false);
@@ -262,6 +281,14 @@ export function HeroSection() {
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, [isEstimateModalOpen]);
+
+  useEffect(() => {
+    window.addEventListener("open-estimate-modal", openEstimateModal);
+
+    return () => {
+      window.removeEventListener("open-estimate-modal", openEstimateModal);
+    };
+  }, [openEstimateModal]);
 
   return (
     <>
@@ -322,19 +349,13 @@ export function HeroSection() {
             >
               MAX
             </a>
-            <button
-              type="button"
+            <CtaButton
               onClick={openEstimateModal}
-              className="group inline-flex min-h-9 items-center justify-center gap-1.5 rounded-sm bg-[#F4A11A] px-3 py-2 text-xs font-semibold text-[#0E2748] transition-all duration-200 hover:-translate-y-px hover:bg-[#e99412] hover:shadow-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#F4A11A] sm:px-4 sm:text-sm"
+              variant="primary"
+              className="min-h-9 gap-1.5 px-3 py-2 text-xs shadow-none hover:shadow-sm sm:px-4 sm:text-sm"
             >
               Получить смету
-              <span
-                aria-hidden="true"
-                className="transition-transform duration-200 group-hover:translate-x-1"
-              >
-                →
-              </span>
-            </button>
+            </CtaButton>
           </div>
         </div>
       </header>
