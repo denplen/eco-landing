@@ -48,6 +48,26 @@ const deliverables = [
   "Ответы на замечания по выполненным работам",
 ];
 
+const turnkeySurveys = [
+  {
+    title: "Инженерно-экологические изыскания",
+    description: "Для проектирования, раздела ООС и прохождения экспертизы.",
+    primary: true,
+  },
+  {
+    title: "Инженерно-геологические изыскания",
+    description: "Данные по грунтам, подземным водам и условиям строительства.",
+  },
+  {
+    title: "Инженерно-геодезические изыскания",
+    description: "Топосъёмка и материалы для проектных решений.",
+  },
+  {
+    title: "Комплекс под ключ",
+    description: "Единая координация, договор, сроки и комплект материалов.",
+  },
+];
+
 export function ScopeAndDeliverablesSection() {
   return (
     <section className="bg-white py-16 text-[#0E2748] sm:py-20 lg:py-24">
@@ -169,6 +189,46 @@ export function ScopeAndDeliverablesSection() {
               Посмотреть пример отчёта
             </a>
           </div>
+        </div>
+
+        <div className="mt-10 border border-[#0E2748]/10 bg-[#F7F9FC] p-6 sm:p-8">
+          <div className="max-w-3xl">
+            <h3 className="text-2xl font-semibold tracking-tight text-[#0E2748]">
+              Можем выполнить комплекс инженерных изысканий под ключ
+            </h3>
+            <p className="mt-3 text-sm leading-6 text-[#0E2748]/62 sm:text-base">
+              Часто инженерно-экологические изыскания заказывают вместе с
+              геологией и геодезией. Выполним смежные работы в одном договоре,
+              чтобы заказчику не приходилось координировать нескольких
+              подрядчиков.
+            </p>
+          </div>
+
+          <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {turnkeySurveys.map((survey) => (
+              <article
+                key={survey.title}
+                className={`border bg-white p-5 ${
+                  survey.primary
+                    ? "border-[#F4A11A]/55 shadow-[0_10px_26px_rgba(14,39,72,0.06)]"
+                    : "border-[#0E2748]/10"
+                }`}
+              >
+                <div
+                  className={`h-1 w-10 ${
+                    survey.primary ? "bg-[#F4A11A]" : "bg-[#0E2748]/18"
+                  }`}
+                />
+                <h4 className="mt-4 text-base font-semibold leading-6 text-[#0E2748]">
+                  {survey.title}
+                </h4>
+                <p className="mt-2 text-sm leading-6 text-[#0E2748]/58">
+                  {survey.description}
+                </p>
+              </article>
+            ))}
+          </div>
+
         </div>
 
         <div className="mt-12 border border-[#0E2748]/10 bg-[#F7F9FC] p-6 sm:flex sm:items-center sm:justify-between sm:gap-8 sm:p-8">

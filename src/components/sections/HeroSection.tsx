@@ -31,6 +31,14 @@ const projectStages = [
   "Не знаю, нужна консультация",
 ];
 
+const surveyTypes = [
+  "Инженерно-экологические",
+  "Инженерно-геологические",
+  "Инженерно-геодезические",
+  "Нужен комплекс под ключ",
+  "Не знаю, нужна консультация",
+];
+
 const workAreas = [
   "Москва ЦАО",
   "Москва САО",
@@ -101,8 +109,8 @@ function EstimateForm({ id, compact = false }: EstimateFormProps) {
           Получите смету по вашему объекту
         </h2>
         <p className="mt-2 max-w-xl text-sm leading-6 text-[#0E2748]/58">
-          Укажите параметры объекта и задачу — специалист подготовит предложение
-          по составу, срокам и стоимости работ.
+          Укажите параметры объекта и нужные виды изысканий — специалист
+          подготовит предложение по составу, срокам и стоимости работ.
         </p>
       </div>
 
@@ -138,6 +146,29 @@ function EstimateForm({ id, compact = false }: EstimateFormProps) {
               ))}
             </select>
           </label>
+
+          <fieldset className="sm:col-span-2">
+            <legend className="text-xs font-semibold text-[#0E2748]/55">
+              Какие изыскания нужны?
+            </legend>
+            <div className="mt-2 grid gap-2 rounded-sm border border-[#0E2748]/10 bg-[#F7F9FC] p-3 sm:grid-cols-2">
+              {surveyTypes.map((surveyType, index) => (
+                <label
+                  key={surveyType}
+                  className="flex cursor-pointer items-start gap-2.5 text-sm leading-5 text-[#0E2748]/70"
+                >
+                  <input
+                    type="checkbox"
+                    name="surveyTypes"
+                    value={surveyType}
+                    defaultChecked={index === 0}
+                    className="mt-0.5 size-4 shrink-0 accent-[#F4A11A]"
+                  />
+                  {surveyType}
+                </label>
+              ))}
+            </div>
+          </fieldset>
 
           <label>
             <span className="sr-only">Район проведения работ</span>
