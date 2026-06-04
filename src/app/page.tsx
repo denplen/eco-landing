@@ -1,8 +1,25 @@
+import { AudienceSolutionsSection } from "@/components/sections/AudienceSolutionsSection";
+import { CasesSection } from "@/components/sections/CasesSection";
+import { CredentialsSection } from "@/components/sections/CredentialsSection";
+import { ExpertiseSupportSection } from "@/components/sections/ExpertiseSupportSection";
+import { FaqContactSection } from "@/components/sections/FaqContactSection";
+import { HeroSection } from "@/components/sections/HeroSection";
+import { ProcessAndPricingSection } from "@/components/sections/ProcessAndPricingSection";
+import { ScopeAndDeliverablesSection } from "@/components/sections/ScopeAndDeliverablesSection";
+import { TrustStatsSection } from "@/components/sections/TrustStatsSection";
+
 export default function Home() {
   return (
     <main>
-      <h1>Главгеоком</h1>
-      <p>Инженерно-экологические изыскания</p>
+      <HeroSection />
+      <TrustStatsSection />
+      <AudienceSolutionsSection />
+      <ScopeAndDeliverablesSection />
+      <CasesSection />
+      <ExpertiseSupportSection />
+      <ProcessAndPricingSection />
+      <CredentialsSection />
+      <FaqContactSection />
     </main>
   );
 }
