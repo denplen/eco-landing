@@ -81,16 +81,16 @@ export function CredentialsSection() {
             </a>
           </div>
 
-          <div className="mt-6 hidden border border-[#0E2748]/10 bg-white p-1.5 shadow-[0_18px_44px_rgba(14,39,72,0.08)] md:block lg:mt-0 lg:p-2">
+          <div className="mt-6 border border-[#0E2748]/10 bg-white p-1.5 shadow-[0_18px_44px_rgba(14,39,72,0.08)] lg:mt-0 lg:p-2">
             <iframe
               src={yandexMapUrl}
               title="Главгеоком на Яндекс Картах"
               width="100%"
-              height="400"
+              height="440"
               frameBorder="0"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              className="block h-[320px] w-full sm:h-[400px]"
+              className="block h-[440px] w-full md:h-[400px]"
             />
           </div>
         </div>

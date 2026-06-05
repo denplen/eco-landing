@@ -101,14 +101,24 @@ function EstimateForm({ id, compact = false }: EstimateFormProps) {
       className={`bg-white text-[#0E2748] ${
         compact
           ? "border border-[#0E2748]/10 p-4 shadow-[0_28px_75px_rgba(14,39,72,0.16)] ring-1 ring-white/80 sm:p-9"
-          : "p-4 sm:p-10"
+          : "flex h-full flex-col overflow-hidden md:block md:h-auto md:overflow-visible"
       }`}
     >
+      <div
+        className={
+          compact
+            ? ""
+            : "min-h-0 flex-1 overflow-y-auto p-4 pb-3 sm:p-10 md:overflow-visible"
+        }
+      >
       <div className="border-l-3 border-[#F4A11A] pl-4 sm:pl-5">
         <h2 className="text-xl font-semibold leading-tight tracking-tight sm:text-[1.65rem]">
-          Получите смету по вашему объекту
+          <span className="sm:hidden">Получить смету</span>
+          <span className="hidden sm:inline">
+            Получите смету по вашему объекту
+          </span>
         </h2>
-        <p className="mt-2 max-w-xl text-sm leading-6 text-[#0E2748]/58">
+        <p className="mt-2 hidden max-w-xl text-sm leading-6 text-[#0E2748]/58 sm:block">
           Укажите параметры объекта и нужные виды изысканий — специалист
           подготовит предложение по составу, срокам и стоимости работ.
         </p>
@@ -241,14 +251,72 @@ function EstimateForm({ id, compact = false }: EstimateFormProps) {
         </div>
       </fieldset>
 
-      <div className="mt-4 grid gap-2.5 sm:mt-6 sm:grid-cols-[1fr_auto] sm:gap-3">
+      <p
+        className={`mt-4 text-xs leading-5 text-[#0E2748]/42 ${
+          compact ? "hidden" : ""
+        }`}
+      >
+        Ваши данные нужны только для подготовки коммерческого предложения. Мы не
+        рассылаем рекламные сообщения.
+      </p>
+
+      {!compact && (
+        <div className="mt-6 hidden w-full grid-cols-2 gap-4 md:grid">
+          <label className="inline-flex min-h-12 w-full cursor-pointer items-center justify-center gap-2 rounded-sm border-2 border-[#0E2748]/55 bg-white px-5 py-3 text-sm font-semibold text-[#0E2748] transition-all duration-200 hover:border-[#F4A11A] hover:bg-[#F4A11A]/8 hover:shadow-sm focus-within:border-[#F4A11A] focus-within:bg-[#F4A11A]/8">
+            <input type="file" name="brief" className="sr-only" />
+            <svg
+              aria-hidden="true"
+              className="size-4"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth="1.8"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="m18.375 12.739-7.693 7.693a4.5 4.5 0 0 1-6.364-6.364l10.94-10.94a3 3 0 0 1 4.243 4.243L8.552 18.32a1.5 1.5 0 0 1-2.121-2.121l7.693-7.693"
+              />
+            </svg>
+            Прикрепить ТЗ / схему
+          </label>
+          <CtaButton
+            type="submit"
+            variant="primary"
+            className="w-full px-8"
+          >
+            Получить смету
+          </CtaButton>
+        </div>
+      )}
+
+      </div>
+
+      <div
+        className={
+          compact
+            ? "mt-4 grid gap-2.5 sm:mt-6 sm:grid-cols-[1fr_auto] sm:gap-3"
+            : "sticky bottom-0 z-10 grid shrink-0 grid-cols-2 gap-2 border-t border-[#0E2748]/10 bg-white p-3 shadow-[0_-10px_24px_rgba(14,39,72,0.08)] md:hidden"
+        }
+      >
         <CtaButton
           type="submit"
           variant="primary"
+          className={
+            compact
+              ? "w-full sm:w-auto"
+              : "order-2 min-h-11 w-full px-3 py-2.5 text-sm md:order-2 md:w-auto md:min-w-[220px] md:px-8 md:py-3 md:text-base"
+          }
         >
           Получить смету
         </CtaButton>
-        <label className="inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-sm border-2 border-[#0E2748]/55 bg-white px-4 py-2.5 text-sm font-semibold text-[#0E2748] transition-all duration-200 hover:border-[#F4A11A] hover:bg-[#F4A11A]/8 hover:shadow-sm focus-within:border-[#F4A11A] focus-within:bg-[#F4A11A]/8 sm:min-h-12 sm:px-5 sm:py-3">
+        <label
+          className={
+            compact
+              ? "inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-sm border-2 border-[#0E2748]/55 bg-white px-4 py-2.5 text-sm font-semibold text-[#0E2748] transition-all duration-200 hover:border-[#F4A11A] hover:bg-[#F4A11A]/8 hover:shadow-sm focus-within:border-[#F4A11A] focus-within:bg-[#F4A11A]/8 sm:min-h-12 sm:px-5 sm:py-3"
+              : "order-1 inline-flex min-h-11 w-full cursor-pointer items-center justify-center gap-1.5 rounded-sm border border-[#0E2748]/25 bg-white px-3 py-2.5 text-sm font-semibold text-[#0E2748] transition-all duration-200 hover:border-[#F4A11A] hover:bg-[#F4A11A]/8 hover:shadow-sm focus-within:border-[#F4A11A] focus-within:bg-[#F4A11A]/8 md:order-1 md:min-h-12 md:w-auto md:min-w-[220px] md:gap-2 md:border-2 md:border-[#0E2748]/55 md:px-5 md:py-3"
+          }
+        >
           <input type="file" name="brief" className="sr-only" />
           <svg
             aria-hidden="true"
@@ -264,14 +332,23 @@ function EstimateForm({ id, compact = false }: EstimateFormProps) {
               d="m18.375 12.739-7.693 7.693a4.5 4.5 0 0 1-6.364-6.364l10.94-10.94a3 3 0 0 1 4.243 4.243L8.552 18.32a1.5 1.5 0 0 1-2.121-2.121l7.693-7.693"
             />
           </svg>
-          Прикрепить ТЗ / схему
+          {compact ? (
+            "Прикрепить ТЗ / схему"
+          ) : (
+            <>
+              <span className="md:hidden">Прикрепить ТЗ</span>
+              <span className="hidden md:inline">Прикрепить ТЗ / схему</span>
+            </>
+          )}
         </label>
       </div>
 
-      <p className="mt-4 text-xs leading-5 text-[#0E2748]/42">
-        Ваши данные нужны только для подготовки коммерческого предложения. Мы не
-        рассылаем рекламные сообщения.
-      </p>
+      {compact && (
+        <p className="mt-4 text-xs leading-5 text-[#0E2748]/42">
+          Ваши данные нужны только для подготовки коммерческого предложения. Мы
+          не рассылаем рекламные сообщения.
+        </p>
+      )}
     </form>
   );
 }
@@ -443,32 +520,50 @@ export function HeroSection() {
             <a
               href="#contacts"
               aria-label="Связаться в Telegram"
-              className="hidden size-8 items-center justify-center rounded-full border border-[#0E2748]/15 text-[10px] font-bold text-[#0E2748] transition-colors hover:border-[#F4A11A] hover:text-[#F4A11A] sm:inline-flex"
+              className="hidden size-8 items-center justify-center rounded-full border border-[#0E2748]/15 text-[10px] font-bold text-[#0E2748] transition-colors hover:border-[#F4A11A] hover:text-[#F4A11A] lg:inline-flex"
             >
               TG
             </a>
             <a
               href="#contacts"
               aria-label="Связаться в MAX"
-              className="hidden size-8 items-center justify-center rounded-full border border-[#0E2748]/15 text-[10px] font-bold text-[#0E2748] transition-colors hover:border-[#F4A11A] hover:text-[#F4A11A] sm:inline-flex"
+              className="hidden size-8 items-center justify-center rounded-full border border-[#0E2748]/15 text-[10px] font-bold text-[#0E2748] transition-colors hover:border-[#F4A11A] hover:text-[#F4A11A] lg:inline-flex"
             >
               MAX
             </a>
-            <CtaButton
-              onClick={openEstimateModal}
-              variant="primary"
-              className="hidden min-h-9 gap-1.5 px-3 py-2 text-xs shadow-none hover:shadow-sm sm:px-4 sm:text-sm lg:inline-flex"
-            >
-              Получить смету
-            </CtaButton>
+            <div className="hidden lg:block">
+              <CtaButton
+                onClick={openEstimateModal}
+                variant="primary"
+                className="min-h-9 gap-1.5 px-3 py-2 text-xs shadow-none hover:shadow-sm sm:px-4 sm:text-sm"
+              >
+                Получить смету
+              </CtaButton>
+            </div>
             <button
               type="button"
               aria-label="Открыть меню"
               aria-expanded={isMobileNavOpen}
               onClick={() => setIsMobileNavOpen((isOpen) => !isOpen)}
-              className="inline-flex min-h-9 items-center justify-center rounded-sm border border-[#0E2748]/15 px-3 text-xs font-semibold text-[#0E2748] transition-colors hover:border-[#F4A11A] hover:text-[#F4A11A] xl:hidden"
+              className="inline-flex size-10 items-center justify-center rounded-sm border border-[#0E2748]/15 text-[#0E2748] transition-colors hover:border-[#F4A11A] hover:text-[#F4A11A] xl:hidden"
             >
-              Меню
+              <span className="relative block h-4 w-5" aria-hidden="true">
+                <span
+                  className={`absolute left-0 top-0 h-0.5 w-5 bg-current transition-transform duration-200 ${
+                    isMobileNavOpen ? "translate-y-[7px] rotate-45" : ""
+                  }`}
+                />
+                <span
+                  className={`absolute left-0 top-[7px] h-0.5 w-5 bg-current transition-opacity duration-200 ${
+                    isMobileNavOpen ? "opacity-0" : "opacity-100"
+                  }`}
+                />
+                <span
+                  className={`absolute left-0 top-[14px] h-0.5 w-5 bg-current transition-transform duration-200 ${
+                    isMobileNavOpen ? "-translate-y-[7px] -rotate-45" : ""
+                  }`}
+                />
+              </span>
             </button>
           </div>
         </div>
@@ -588,7 +683,7 @@ export function HeroSection() {
           role="dialog"
           aria-modal="true"
           aria-label="Получить смету"
-          className={`fixed inset-0 z-50 flex items-center justify-center bg-[#0E2748]/74 p-3 backdrop-blur-[6px] transition-opacity duration-200 sm:p-6 ${
+          className={`fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-[#0E2748]/74 px-2 py-2 backdrop-blur-[6px] transition-opacity duration-200 sm:items-center sm:px-6 sm:py-8 ${
             isEstimateModalVisible ? "opacity-100" : "opacity-0"
           }`}
           onMouseDown={(event) => {
@@ -598,7 +693,7 @@ export function HeroSection() {
           }}
         >
           <div
-            className={`relative max-h-[calc(100dvh-24px)] w-[calc(100vw-24px)] max-w-none overflow-y-auto border border-[#F4A11A]/35 bg-white shadow-[0_40px_120px_rgba(0,0,0,0.42)] ring-1 ring-white/60 transition-all duration-200 sm:max-h-[calc(100vh-3rem)] sm:w-full sm:max-w-3xl ${
+            className={`relative mx-auto my-2 flex h-[calc(100dvh-16px)] w-[calc(100vw-16px)] max-w-none flex-col overflow-hidden border border-[#F4A11A]/35 bg-white shadow-[0_40px_120px_rgba(0,0,0,0.42)] ring-1 ring-white/60 transition-all duration-200 sm:my-0 sm:h-auto sm:max-h-[calc(100vh-64px)] sm:w-full sm:max-w-3xl ${
               isEstimateModalVisible
                 ? "translate-y-0 scale-100 opacity-100"
                 : "translate-y-2 scale-[0.985] opacity-0"
@@ -608,7 +703,7 @@ export function HeroSection() {
               type="button"
               aria-label="Закрыть окно"
               onClick={closeEstimateModal}
-              className="sticky right-3 top-3 z-10 ml-auto mr-3 mt-3 inline-flex size-9 items-center justify-center rounded-full border border-[#0E2748]/12 bg-white text-xl leading-none text-[#0E2748]/60 shadow-sm transition-all duration-200 hover:border-[#F4A11A] hover:text-[#0E2748] hover:shadow-sm sm:absolute sm:mr-0 sm:mt-0"
+              className="absolute right-2 top-2 z-10 inline-flex size-8 items-center justify-center rounded-full border border-[#0E2748]/12 bg-white text-lg leading-none text-[#0E2748]/60 shadow-sm transition-all duration-200 hover:border-[#F4A11A] hover:text-[#0E2748] hover:shadow-sm sm:right-3 sm:top-3 sm:size-9 sm:text-xl"
             >
               ×
             </button>

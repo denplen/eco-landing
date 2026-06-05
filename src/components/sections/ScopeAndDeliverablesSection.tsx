@@ -99,20 +99,20 @@ export function ScopeAndDeliverablesSection() {
             Как проходит работа
           </h3>
 
-          <ol className="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <ol className="mt-5 grid gap-2.5 sm:mt-7 sm:grid-cols-2 sm:gap-4 lg:grid-cols-4">
             {workStages.map((stage) => (
               <li
                 key={stage.number}
-                className="group relative min-h-0 overflow-hidden border border-[#0E2748]/10 bg-[#F7F9FC] p-4 shadow-[0_12px_30px_rgba(14,39,72,0.05)] transition-all duration-200 hover:-translate-y-[3px] hover:border-[#F4A11A]/55 hover:shadow-[0_18px_40px_rgba(14,39,72,0.10)] sm:min-h-60 sm:p-6"
+                className="group relative min-h-0 overflow-hidden border border-[#0E2748]/10 bg-[#F7F9FC] p-3.5 shadow-[0_12px_30px_rgba(14,39,72,0.05)] transition-all duration-200 hover:-translate-y-[3px] hover:border-[#F4A11A]/55 hover:shadow-[0_18px_40px_rgba(14,39,72,0.10)] sm:min-h-60 sm:p-6"
               >
                 <div className="absolute inset-x-0 top-0 h-1 bg-[#F4A11A]/75 transition-colors duration-200 group-hover:bg-[#F4A11A]" />
                 <span className="text-xs font-semibold uppercase tracking-[0.16em] text-[#F4A11A]">
                   Этап {stage.number}
                 </span>
-                <h4 className="mt-3 text-lg font-semibold tracking-tight text-[#0E2748] sm:mt-4 sm:text-xl">
+                <h4 className="mt-2 text-base font-semibold tracking-tight text-[#0E2748] sm:mt-4 sm:text-xl">
                   {stage.title}
                 </h4>
-                <p className="mt-2 text-sm leading-6 text-[#0E2748]/65 sm:hidden">
+                <p className="mt-1.5 text-sm leading-5 text-[#0E2748]/65 sm:hidden">
                   {stage.mobileDescription}
                 </p>
                 <ul className="mt-5 hidden space-y-3 sm:block">
