@@ -40,8 +40,12 @@ export function CredentialsSection() {
   return (
     <section
       id="credentials"
-      className="scroll-mt-24 bg-white py-16 text-[#0E2748] sm:py-20 lg:py-24"
+      className="relative scroll-mt-24 overflow-hidden bg-white py-16 text-[#0E2748] sm:py-20 lg:py-24"
     >
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute right-10 top-14 hidden h-40 w-72 bg-[linear-gradient(rgba(14,39,72,0.07)_1px,transparent_1px),linear-gradient(90deg,rgba(14,39,72,0.07)_1px,transparent_1px)] bg-[size:28px_28px] opacity-40 lg:block"
+      />
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl">
           <p className="inline-flex items-center gap-2 text-sm font-semibold text-[#0E2748]/60">

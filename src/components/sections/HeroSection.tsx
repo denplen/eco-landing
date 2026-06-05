@@ -3,6 +3,11 @@
 import Image from "next/image";
 import { useCallback, useEffect, useState, type MouseEvent } from "react";
 import { CtaButton } from "@/components/ui/CtaButton";
+import {
+  CornerMarkers,
+  EngineeringGrid,
+  TopoLines,
+} from "@/components/ui/EngineeringDecor";
 
 const navItems = [
   { label: "Опыт", href: "#experience" },
@@ -616,6 +621,8 @@ export function HeroSection() {
         <div className="absolute inset-0 bg-gradient-to-r from-[#F7F9FC]/31 via-[#F7F9FC]/27 to-[#F7F9FC]/22" />
         <div className="absolute inset-0 bg-white/4" />
         <div className="absolute inset-y-0 left-0 w-[62%] bg-gradient-to-r from-white/72 via-white/35 to-transparent" />
+        <TopoLines className="right-[-4rem] top-20 hidden h-72 w-[32rem] lg:block" />
+        <EngineeringGrid className="bottom-14 left-8 hidden h-44 w-72 opacity-40 lg:block" />
 
         <div className="relative mx-auto flex min-h-[calc(100svh-4.625rem)] max-w-7xl flex-col justify-center gap-12 px-4 pb-28 pt-10 sm:px-6 sm:pb-32 sm:pt-14 lg:grid lg:min-h-[calc(100svh-4.5rem)] lg:grid-cols-[minmax(0,540px)_minmax(560px,1fr)] lg:items-center lg:gap-20 lg:px-8 lg:py-24 xl:gap-24">
           <div className="w-full max-w-full min-w-0 lg:max-w-xl">
@@ -667,6 +674,7 @@ export function HeroSection() {
             <div className="absolute -inset-6 hidden border border-[#0E2748]/8 bg-white/25 backdrop-blur-[2px] lg:block" />
             <div className="absolute -bottom-5 -right-5 hidden size-28 border-b-2 border-r-2 border-[#F4A11A]/55 lg:block" />
             <div className="relative">
+              <CornerMarkers className="-inset-3" />
               <EstimateForm id="hero-estimate-form" compact />
             </div>
           </div>

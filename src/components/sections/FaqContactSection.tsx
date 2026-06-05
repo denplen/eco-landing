@@ -2,6 +2,10 @@
 
 import Image from "next/image";
 import { CtaButton } from "@/components/ui/CtaButton";
+import {
+  CornerMarkers,
+  EngineeringGrid,
+} from "@/components/ui/EngineeringDecor";
 
 const faqItems = [
   {
@@ -60,8 +64,9 @@ const contactCardClassName =
 export function FaqContactSection() {
   return (
     <section
-      className="scroll-mt-24 bg-[#0E2748] pb-28 pt-16 text-white sm:py-20 lg:py-24"
+      className="relative scroll-mt-24 overflow-hidden bg-[#0E2748] pb-28 pt-16 text-white sm:py-20 lg:py-24"
     >
+      <EngineeringGrid className="right-8 top-12 hidden h-52 w-96 opacity-30 lg:block" />
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div id="faq" className="scroll-mt-24">
           <p className="inline-flex items-center gap-2 text-sm font-semibold text-white/65">
@@ -102,8 +107,9 @@ export function FaqContactSection() {
 
         <div
           id="contacts"
-          className="mt-12 scroll-mt-24 border border-white/12 bg-white/[0.06] p-7 shadow-[0_24px_60px_rgba(0,0,0,0.18)] sm:p-10 lg:grid lg:grid-cols-[0.95fr_1.05fr] lg:gap-12"
+          className="relative mt-12 scroll-mt-24 border border-white/12 bg-white/[0.06] p-7 shadow-[0_24px_60px_rgba(0,0,0,0.18)] sm:p-10 lg:grid lg:grid-cols-[0.95fr_1.05fr] lg:gap-12"
         >
+          <CornerMarkers className="hidden lg:block" />
           <div>
             <Image
               src="/images/logo_horizont_dark_bg.svg"
