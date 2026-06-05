@@ -1,7 +1,3 @@
-"use client";
-
-import { CtaButton } from "@/components/ui/CtaButton";
-
 const supportPoints = [
   {
     number: "01",
@@ -139,27 +135,11 @@ export function ExpertiseSupportSection() {
           </ol>
         </div>
 
-        <div className="mt-10 border border-[#0E2748]/10 bg-[#F7F9FC] p-6 sm:flex sm:items-center sm:justify-between sm:gap-8 sm:p-8">
-          <div className="max-w-2xl">
-            <h3 className="text-xl font-semibold tracking-tight text-[#0E2748] sm:text-2xl">
-              Хотите снизить риск замечаний по отчёту?
-            </h3>
-            <p className="mt-2 text-sm leading-6 text-[#0E2748]/62 sm:text-base">
-              Отправьте параметры объекта или ТЗ — специалист подскажет, какие
-              материалы потребуются для проектирования и экспертизы.
-            </p>
-          </div>
-
-          <CtaButton
-            variant="primary"
-            onClick={() =>
-              window.dispatchEvent(new CustomEvent("open-estimate-modal"))
-            }
-            className="mt-5 w-full shrink-0 sm:mt-0 sm:w-auto"
-          >
-            Получить смету
-          </CtaButton>
-        </div>
+        <p className="mt-8 border-t border-[#0E2748]/10 pt-5 text-sm leading-6 text-[#0E2748]/62">
+          Вопросы экспертизы лучше учитывать до старта работ: это снижает риск
+          доработок и помогает проектировщикам использовать отчёт без лишних
+          уточнений.
+        </p>
       </div>
     </section>
   );

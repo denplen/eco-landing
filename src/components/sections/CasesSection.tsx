@@ -1,7 +1,3 @@
-"use client";
-
-import { CtaButton } from "@/components/ui/CtaButton";
-
 type CaseItem = {
   number: string;
   title: string;
@@ -153,26 +149,16 @@ export function CasesSection() {
           ))}
         </div>
 
-        <div className="mt-10 flex flex-col gap-4 border-t border-[#0E2748]/10 pt-6 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-10 border-t border-[#0E2748]/10 pt-6">
           <div className="max-w-2xl">
             <h3 className="text-lg font-semibold tracking-tight text-[#0E2748] sm:text-xl">
               Есть похожий объект?
             </h3>
             <p className="mt-1.5 text-sm leading-6 text-[#0E2748]/62">
-              Опишите задачу — подскажем, какие изыскания потребуются и какие
-              материалы понадобятся проектировщикам.
+              Уточните состав работ при расчёте сметы, если ваш объект похож
+              на один из этих сценариев или требует комплексных изысканий.
             </p>
           </div>
-
-          <CtaButton
-            variant="primary"
-            onClick={() =>
-              window.dispatchEvent(new CustomEvent("open-estimate-modal"))
-            }
-            className="w-full shrink-0 sm:w-auto"
-          >
-            Получить смету
-          </CtaButton>
         </div>
       </div>
     </section>

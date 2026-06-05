@@ -1,7 +1,3 @@
-"use client";
-
-import { CtaButton } from "@/components/ui/CtaButton";
-
 const stats = [
   {
     value: "20+ лет",
@@ -127,27 +123,10 @@ export function TrustStatsSection() {
               ))}
             </ul>
 
-            <div className="mt-7 border-t border-[#0E2748]/10 pt-6">
-              <h4 className="text-lg font-semibold tracking-tight text-[#0E2748]">
-                Хотите проверить состав работ до запуска проекта?
-              </h4>
-              <p className="mt-2 max-w-xl text-sm leading-6 text-[#0E2748]/60">
-                Отправьте параметры объекта — специалист подготовит смету и
-                подскажет, какие исследования потребуются для экспертизы.
-              </p>
-
-              <div className="mt-4">
-                <CtaButton
-                  onClick={() =>
-                    window.dispatchEvent(new CustomEvent("open-estimate-modal"))
-                  }
-                  variant="primary"
-                  className="min-h-10 px-5 py-2.5 text-sm shadow-none hover:shadow-sm"
-                >
-                  Получить смету
-                </CtaButton>
-              </div>
-            </div>
+            <p className="mt-7 border-t border-[#0E2748]/10 pt-5 text-sm leading-6 text-[#0E2748]/62">
+              Состав работ уточняется до договора, чтобы заказчик понимал
+              объём изысканий, сроки и ожидаемый результат.
+            </p>
           </div>
         </div>
       </div>

@@ -1,7 +1,3 @@
-"use client";
-
-import { CtaButton } from "@/components/ui/CtaButton";
-
 const audiences = [
   {
     number: "01",
@@ -99,27 +95,10 @@ export function AudienceSolutionsSection() {
           ))}
         </div>
 
-        <div className="mt-12 border border-[#0E2748]/10 bg-white p-6 shadow-[0_14px_36px_rgba(14,39,72,0.05)] sm:flex sm:items-center sm:justify-between sm:gap-8 sm:p-8">
-          <div className="max-w-2xl">
-            <h3 className="text-xl font-semibold tracking-tight text-[#0E2748] sm:text-2xl">
-              Расскажите, на каком этапе ваш проект
-            </h3>
-            <p className="mt-2 text-sm leading-6 text-[#0E2748]/62 sm:text-base">
-              Подскажем, какие материалы нужны для проектирования, экспертизы
-              или подготовки технического задания.
-            </p>
-          </div>
-
-          <CtaButton
-            variant="primary"
-            onClick={() =>
-              window.dispatchEvent(new CustomEvent("open-estimate-modal"))
-            }
-            className="mt-5 w-full shrink-0 sm:mt-0 sm:w-auto"
-          >
-            Получить смету
-          </CtaButton>
-        </div>
+        <p className="mt-10 border-t border-[#0E2748]/10 pt-5 text-sm leading-6 text-[#0E2748]/62">
+          Расскажите, на каком этапе ваш проект — это поможет точнее
+          рассчитать смету и подготовить материалы для вашей роли в проекте.
+        </p>
       </div>
     </section>
   );
