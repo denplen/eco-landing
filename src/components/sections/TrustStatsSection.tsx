@@ -2,24 +2,28 @@ const stats = [
   {
     value: "20+ лет",
     label: "на рынке инженерных изысканий",
+    mobileLabel: "на рынке",
     description:
       "Понимаем требования проектировщиков, заказчиков и экспертизы",
   },
   {
     value: "10 000+",
     label: "выполненных объектов",
+    mobileLabel: "объектов",
     description:
       "Работаем с жилыми, общественными, промышленными и линейными объектами",
   },
   {
     value: "40+",
     label: "единиц техники и оборудования",
+    mobileLabel: "единиц техники",
     description:
       "Выполняем полевые работы без лишней зависимости от подрядчиков",
   },
   {
     value: "Член СРО",
     label: "работаем по договору",
+    mobileLabel: "",
     description: "Фиксируем состав работ, сроки и результат",
   },
 ];
@@ -35,7 +39,7 @@ export function TrustStatsSection() {
   return (
     <section
       id="experience"
-      className="scroll-mt-24 bg-white py-16 text-[#0E2748] sm:py-20 lg:py-22"
+      className="scroll-mt-24 bg-white py-10 text-[#0E2748] sm:py-20 lg:py-22"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl">
@@ -53,18 +57,21 @@ export function TrustStatsSection() {
           </p>
         </div>
 
-        <dl className="mt-12 grid gap-5 sm:grid-cols-2 lg:mt-12 lg:grid-cols-4">
+        <dl className="mt-8 grid grid-cols-2 gap-3 sm:mt-12 sm:gap-5 lg:mt-12 lg:grid-cols-4">
           {stats.map((stat) => (
             <div
               key={stat.value}
-              className="group relative min-h-40 overflow-hidden border border-[#0E2748]/10 bg-white p-5 shadow-[0_14px_36px_rgba(14,39,72,0.07)] transition-all duration-200 hover:-translate-y-[3px] hover:border-[#F4A11A]/70 hover:shadow-[0_22px_50px_rgba(14,39,72,0.14)] md:min-h-64 md:p-6"
+              className="group relative overflow-hidden border border-[#0E2748]/10 bg-white p-3.5 shadow-[0_10px_24px_rgba(14,39,72,0.06)] transition-all duration-200 hover:-translate-y-[3px] hover:border-[#F4A11A]/70 hover:shadow-[0_22px_50px_rgba(14,39,72,0.14)] sm:p-5 md:min-h-64 md:p-6"
             >
               <div className="absolute left-0 top-0 h-full w-1 bg-[#F4A11A] opacity-70 transition-opacity duration-200 group-hover:opacity-100" />
-              <dd className="text-3xl font-semibold tracking-tight text-[#0E2748] sm:text-4xl">
+              <dd className="text-2xl font-semibold tracking-tight text-[#0E2748] sm:text-4xl">
                 {stat.value}
               </dd>
-              <dt className="mt-5 max-w-[15rem] text-base font-semibold leading-6 text-[#0E2748]">
-                {stat.label}
+              <dt className="mt-2 max-w-[15rem] text-sm font-semibold leading-5 text-[#0E2748] sm:mt-5 sm:text-base sm:leading-6">
+                {stat.mobileLabel && (
+                  <span className="sm:hidden">{stat.mobileLabel}</span>
+                )}
+                <span className="hidden sm:inline">{stat.label}</span>
               </dt>
               <p className="mt-4 hidden text-sm leading-6 text-[#0E2748]/58 md:block">
                 {stat.description}

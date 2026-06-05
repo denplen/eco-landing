@@ -41,7 +41,7 @@ export function AudienceSolutionsSection() {
   return (
     <section
       id="audience"
-      className="scroll-mt-24 bg-[#F7F9FC] py-16 text-[#0E2748] sm:py-20 lg:py-24"
+      className="scroll-mt-24 bg-[#F7F9FC] py-10 text-[#0E2748] sm:py-20 lg:py-24"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl">
@@ -58,13 +58,13 @@ export function AudienceSolutionsSection() {
           </p>
         </div>
 
-        <div className="mt-12 grid gap-5 lg:grid-cols-3">
+        <div className="mt-8 grid gap-3 sm:mt-12 sm:gap-5 lg:grid-cols-3">
           {audiences.map((audience) => (
             <article
               key={audience.number}
-              className="group relative flex min-h-full flex-col overflow-hidden border border-[#0E2748]/10 bg-white p-6 shadow-[0_12px_32px_rgba(14,39,72,0.05)] transition-all duration-200 hover:-translate-y-[3px] hover:border-[#F4A11A]/55 hover:shadow-[0_20px_46px_rgba(14,39,72,0.10)] sm:p-7"
+              className="group relative flex min-h-full flex-col overflow-hidden border border-[#0E2748]/10 bg-white p-3.5 shadow-[0_12px_32px_rgba(14,39,72,0.05)] transition-all duration-200 hover:-translate-y-[3px] hover:border-[#F4A11A]/55 hover:shadow-[0_20px_46px_rgba(14,39,72,0.10)] sm:p-7"
             >
-              <div className="absolute inset-x-0 top-0 h-1 bg-[#F4A11A]/75 transition-colors duration-200 group-hover:bg-[#F4A11A]" />
+              <div className="absolute inset-x-0 top-0 h-0.5 bg-[#F4A11A]/70 transition-colors duration-200 group-hover:bg-[#F4A11A] sm:h-1" />
 
               <div className="flex items-center justify-between gap-4">
                 <span className="text-xs font-semibold uppercase tracking-[0.16em] text-[#F4A11A]">
@@ -73,10 +73,10 @@ export function AudienceSolutionsSection() {
                 <span className="h-px flex-1 bg-[#0E2748]/10" />
               </div>
 
-              <h3 className="mt-6 text-2xl font-semibold tracking-tight text-[#0E2748]">
+              <h3 className="mt-3 text-xl font-semibold tracking-tight text-[#0E2748] sm:mt-6 sm:text-2xl">
                 {audience.title}
               </h3>
-              <p className="mt-4 text-sm leading-6 text-[#0E2748]/62 sm:text-base">
+              <p className="mt-1.5 text-sm leading-5 text-[#0E2748]/62 sm:mt-4 sm:text-base sm:leading-6">
                 {audience.description}
               </p>
 
@@ -95,7 +95,7 @@ export function AudienceSolutionsSection() {
           ))}
         </div>
 
-        <p className="mt-10 border-t border-[#0E2748]/10 pt-5 text-sm leading-6 text-[#0E2748]/62">
+        <p className="mt-7 hidden border-t border-[#0E2748]/10 pt-4 text-sm leading-6 text-[#0E2748]/62 sm:mt-10 sm:block sm:pt-5">
           Расскажите, на каком этапе ваш проект — это поможет точнее
           рассчитать смету и подготовить материалы для вашей роли в проекте.
         </p>

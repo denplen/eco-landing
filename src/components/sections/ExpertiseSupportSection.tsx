@@ -36,7 +36,7 @@ export function ExpertiseSupportSection() {
   return (
     <section
       id="expertise"
-      className="scroll-mt-24 bg-white pb-16 pt-8 text-[#0E2748] sm:pb-20 sm:pt-10 lg:pb-24 lg:pt-10"
+      className="scroll-mt-24 bg-white pb-10 pt-6 text-[#0E2748] sm:pb-20 sm:pt-10 lg:pb-24 lg:pt-10"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl">
@@ -54,9 +54,9 @@ export function ExpertiseSupportSection() {
           </p>
         </div>
 
-        <div className="mt-12 grid gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-stretch lg:gap-10">
-          <div className="flex h-full flex-col border border-[#0E2748]/10 bg-[#F7F9FC] p-6 shadow-[0_14px_36px_rgba(14,39,72,0.05)] sm:p-8">
-            <h3 className="text-2xl font-semibold tracking-tight text-[#0E2748]">
+        <div className="mt-8 grid gap-5 sm:mt-12 sm:gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-stretch lg:gap-10">
+          <div className="flex h-full flex-col border border-[#0E2748]/10 bg-[#F7F9FC] p-4 shadow-[0_14px_36px_rgba(14,39,72,0.05)] sm:p-8">
+            <h3 className="text-xl font-semibold tracking-tight text-[#0E2748] sm:text-2xl">
               Что происходит после выдачи отчёта
             </h3>
             <p className="mt-5 hidden text-sm leading-7 text-[#0E2748]/68 md:block sm:text-base">
@@ -67,7 +67,7 @@ export function ExpertiseSupportSection() {
               ответственности.
             </p>
 
-            <div className="mt-8 border border-[#F4A11A]/35 border-l-3 bg-white p-5 lg:mt-auto">
+            <div className="mt-4 border border-[#F4A11A]/35 border-l-3 bg-white p-4 sm:mt-8 sm:p-5 lg:mt-auto">
               <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#F4A11A]">
                 Без опасных обещаний
               </p>
@@ -80,14 +80,14 @@ export function ExpertiseSupportSection() {
           </div>
 
           <div className="flex h-full flex-col">
-            <h3 className="text-2xl font-semibold tracking-tight text-[#0E2748]">
+            <h3 className="text-xl font-semibold tracking-tight text-[#0E2748] sm:text-2xl">
               Как мы снижаем риск замечаний
             </h3>
-            <div className="mt-6 grid flex-1 gap-4 sm:grid-cols-2 sm:items-stretch">
+            <div className="mt-4 grid flex-1 gap-2.5 sm:mt-6 sm:grid-cols-2 sm:items-stretch sm:gap-4">
               {supportPoints.map((point) => (
                 <article
                   key={point.number}
-                  className="group h-full border border-[#0E2748]/10 bg-white p-5 shadow-[0_10px_28px_rgba(14,39,72,0.04)] transition-all duration-200 hover:-translate-y-[2px] hover:border-[#F4A11A]/50 hover:shadow-[0_16px_34px_rgba(14,39,72,0.08)]"
+                  className="group h-full border border-[#0E2748]/10 bg-white p-3.5 shadow-[0_10px_28px_rgba(14,39,72,0.04)] transition-all duration-200 hover:-translate-y-[2px] hover:border-[#F4A11A]/50 hover:shadow-[0_16px_34px_rgba(14,39,72,0.08)] sm:p-5"
                 >
                   <span className="text-xs font-semibold uppercase tracking-[0.14em] text-[#F4A11A]">
                     {point.number}
@@ -104,7 +104,7 @@ export function ExpertiseSupportSection() {
           </div>
         </div>
 
-        <div className="mt-10 border border-[#F4A11A]/35 border-l-3 bg-[#F7F9FC] p-5 sm:flex sm:items-center sm:justify-between sm:gap-8 sm:p-6">
+        <div className="mt-6 border border-[#F4A11A]/35 border-l-3 bg-[#F7F9FC] p-4 sm:mt-10 sm:flex sm:items-center sm:justify-between sm:gap-8 sm:p-6">
           <div className="max-w-3xl">
             <h3 className="text-xl font-semibold tracking-tight text-[#0E2748]">
               Отвечаем на замечания по выполненным работам
