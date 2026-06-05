@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { CtaButton } from "@/components/ui/CtaButton";
 
@@ -7,6 +7,7 @@ const workStages = [
     number: "01",
     title: "Подготовка",
     points: ["Анализ исходных данных", "Разработка программы изысканий"],
+    mobileDescription: "Анализ исходных данных.",
   },
   {
     number: "02",
@@ -16,6 +17,7 @@ const workStages = [
       "Отбор проб",
       "Фиксация фактических условий",
     ],
+    mobileDescription: "Обследование территории.",
   },
   {
     number: "03",
@@ -25,6 +27,7 @@ const workStages = [
       "Оценка экологических ограничений",
       "Камеральная обработка материалов",
     ],
+    mobileDescription: "Лаборатория и камеральная обработка.",
   },
   {
     number: "04",
@@ -34,6 +37,7 @@ const workStages = [
       "Текстовые и графические приложения",
       "Ответы на замечания по выполненным работам",
     ],
+    mobileDescription: "Передаём комплект материалов.",
   },
 ];
 
@@ -99,17 +103,17 @@ export function ScopeAndDeliverablesSection() {
             {workStages.map((stage) => (
               <li
                 key={stage.number}
-                className="group relative min-h-60 overflow-hidden border border-[#0E2748]/10 bg-[#F7F9FC] p-6 shadow-[0_12px_30px_rgba(14,39,72,0.05)] transition-all duration-200 hover:-translate-y-[3px] hover:border-[#F4A11A]/55 hover:shadow-[0_18px_40px_rgba(14,39,72,0.10)]"
+                className="group relative min-h-0 overflow-hidden border border-[#0E2748]/10 bg-[#F7F9FC] p-4 shadow-[0_12px_30px_rgba(14,39,72,0.05)] transition-all duration-200 hover:-translate-y-[3px] hover:border-[#F4A11A]/55 hover:shadow-[0_18px_40px_rgba(14,39,72,0.10)] sm:min-h-60 sm:p-6"
               >
                 <div className="absolute inset-x-0 top-0 h-1 bg-[#F4A11A]/75 transition-colors duration-200 group-hover:bg-[#F4A11A]" />
                 <span className="text-xs font-semibold uppercase tracking-[0.16em] text-[#F4A11A]">
                   Этап {stage.number}
                 </span>
-                <h4 className="mt-4 text-xl font-semibold tracking-tight text-[#0E2748]">
+                <h4 className="mt-3 text-lg font-semibold tracking-tight text-[#0E2748] sm:mt-4 sm:text-xl">
                   {stage.title}
                 </h4>
-                <p className="mt-3 text-sm leading-6 text-[#0E2748]/65 sm:hidden">
-                  {stage.points[0]}
+                <p className="mt-2 text-sm leading-6 text-[#0E2748]/65 sm:hidden">
+                  {stage.mobileDescription}
                 </p>
                 <ul className="mt-5 hidden space-y-3 sm:block">
                   {stage.points.map((point) => (
@@ -129,7 +133,7 @@ export function ScopeAndDeliverablesSection() {
 
         <details className="mt-10 border border-[#0E2748]/10 bg-white p-5 shadow-[0_18px_46px_rgba(14,39,72,0.07)] md:hidden">
           <summary className="cursor-pointer list-none text-xl font-semibold tracking-tight text-[#0E2748]">
-            Р§С‚Рѕ РїРѕР»СѓС‡Р°РµС‚ Р·Р°РєР°Р·С‡РёРє
+            Что получает заказчик
             <span className="float-right text-[#F4A11A]">+</span>
           </summary>
           <ul className="mt-5 grid gap-y-3">
@@ -146,10 +150,10 @@ export function ScopeAndDeliverablesSection() {
 
           <div className="mt-6 border border-[#F4A11A]/40 border-l-3 bg-[#F7F9FC] p-4">
             <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#F4A11A]">
-              Р“Р»Р°РІРЅС‹Р№ СЂРµР·СѓР»СЊС‚Р°С‚
+              Главный результат
             </p>
             <h4 className="mt-2 text-lg font-semibold text-[#0E2748]">
-              РўРµС…РЅРёС‡РµСЃРєРёР№ РѕС‚С‡С‘С‚
+              Технический отчёт
             </h4>
             <a
               href="https://glavgeocom.ru/netcat_files/4/22/TO_Ekologicheskie_izyskaniya_primer_.pdf"
@@ -157,7 +161,7 @@ export function ScopeAndDeliverablesSection() {
               rel="noopener noreferrer"
               className="mt-4 inline-flex min-h-10 items-center justify-center rounded-sm border border-[#0E2748]/30 bg-white px-4 py-2.5 text-sm font-semibold text-[#0E2748] transition-colors duration-200 hover:border-[#F4A11A] hover:bg-[#F4A11A]/5"
             >
-              РџРѕСЃРјРѕС‚СЂРµС‚СЊ РїСЂРёРјРµСЂ РѕС‚С‡С‘С‚Р°
+              Посмотреть пример отчёта
             </a>
           </div>
         </details>
@@ -298,3 +302,4 @@ export function ScopeAndDeliverablesSection() {
     </section>
   );
 }
+

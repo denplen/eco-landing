@@ -87,7 +87,7 @@ const workAreas = [
 ];
 
 const fieldClassName =
-  "min-h-12 w-full rounded-sm border border-[#0E2748]/15 bg-white px-4 text-sm text-[#0E2748] outline-none transition-colors placeholder:text-[#0E2748]/35 focus:border-[#F4A11A] focus:shadow-[0_0_0_3px_rgba(244,161,26,0.10)]";
+  "min-h-11 w-full rounded-sm border border-[#0E2748]/15 bg-white px-3 text-sm text-[#0E2748] outline-none transition-colors placeholder:text-[#0E2748]/35 focus:border-[#F4A11A] focus:shadow-[0_0_0_3px_rgba(244,161,26,0.10)] sm:min-h-12 sm:px-4";
 
 type EstimateFormProps = {
   id?: string;
@@ -100,8 +100,8 @@ function EstimateForm({ id, compact = false }: EstimateFormProps) {
       id={id}
       className={`bg-white text-[#0E2748] ${
         compact
-          ? "border border-[#0E2748]/10 p-6 shadow-[0_28px_75px_rgba(14,39,72,0.16)] ring-1 ring-white/80 sm:p-9"
-          : "p-7 sm:p-10"
+          ? "border border-[#0E2748]/10 p-4 shadow-[0_28px_75px_rgba(14,39,72,0.16)] ring-1 ring-white/80 sm:p-9"
+          : "p-4 sm:p-10"
       }`}
     >
       <div className="border-l-3 border-[#F4A11A] pl-4 sm:pl-5">
@@ -114,11 +114,11 @@ function EstimateForm({ id, compact = false }: EstimateFormProps) {
         </p>
       </div>
 
-      <fieldset className="mt-6">
+      <fieldset className="mt-4 sm:mt-6">
         <legend className="text-xs font-semibold uppercase tracking-[0.12em] text-[#0E2748]/45">
           Параметры объекта
         </legend>
-        <div className="mt-3 grid gap-3 sm:grid-cols-2">
+        <div className="mt-3 grid gap-2.5 sm:grid-cols-2 sm:gap-3">
           <label>
             <span className="sr-only">Тип объекта</span>
             <select name="objectType" defaultValue="" className={fieldClassName}>
@@ -151,11 +151,11 @@ function EstimateForm({ id, compact = false }: EstimateFormProps) {
             <legend className="text-xs font-semibold text-[#0E2748]/55">
               Какие изыскания нужны?
             </legend>
-            <div className="mt-2 grid gap-2 rounded-sm border border-[#0E2748]/10 bg-[#F7F9FC] p-3 sm:grid-cols-2">
+            <div className="mt-2 grid gap-1.5 rounded-sm border border-[#0E2748]/10 bg-[#F7F9FC] p-2.5 sm:grid-cols-2 sm:gap-2 sm:p-3">
               {surveyTypes.map((surveyType, index) => (
                 <label
                   key={surveyType}
-                  className="flex cursor-pointer items-start gap-2.5 text-sm leading-5 text-[#0E2748]/70"
+                  className="flex cursor-pointer items-start gap-2 text-xs leading-5 text-[#0E2748]/70 sm:gap-2.5 sm:text-sm"
                 >
                   <input
                     type="checkbox"
@@ -206,11 +206,11 @@ function EstimateForm({ id, compact = false }: EstimateFormProps) {
         </div>
       </fieldset>
 
-      <fieldset className="mt-6">
+      <fieldset className="mt-4 sm:mt-6">
         <legend className="text-xs font-semibold uppercase tracking-[0.12em] text-[#0E2748]/45">
           Контакты
         </legend>
-        <div className="mt-3 grid gap-3 sm:grid-cols-3">
+        <div className="mt-3 grid gap-2.5 sm:grid-cols-3 sm:gap-3">
           <label>
             <span className="sr-only">Имя</span>
             <input
@@ -241,14 +241,14 @@ function EstimateForm({ id, compact = false }: EstimateFormProps) {
         </div>
       </fieldset>
 
-      <div className="mt-6 grid gap-3 sm:grid-cols-[1fr_auto]">
+      <div className="mt-4 grid gap-2.5 sm:mt-6 sm:grid-cols-[1fr_auto] sm:gap-3">
         <CtaButton
           type="submit"
           variant="primary"
         >
           Получить смету
         </CtaButton>
-        <label className="inline-flex min-h-12 cursor-pointer items-center justify-center gap-2 rounded-sm border-2 border-[#0E2748]/55 bg-white px-5 py-3 text-sm font-semibold text-[#0E2748] transition-all duration-200 hover:border-[#F4A11A] hover:bg-[#F4A11A]/8 hover:shadow-sm focus-within:border-[#F4A11A] focus-within:bg-[#F4A11A]/8">
+        <label className="inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-sm border-2 border-[#0E2748]/55 bg-white px-4 py-2.5 text-sm font-semibold text-[#0E2748] transition-all duration-200 hover:border-[#F4A11A] hover:bg-[#F4A11A]/8 hover:shadow-sm focus-within:border-[#F4A11A] focus-within:bg-[#F4A11A]/8 sm:min-h-12 sm:px-5 sm:py-3">
           <input type="file" name="brief" className="sr-only" />
           <svg
             aria-hidden="true"
@@ -457,7 +457,7 @@ export function HeroSection() {
             <CtaButton
               onClick={openEstimateModal}
               variant="primary"
-              className="min-h-9 gap-1.5 px-3 py-2 text-xs shadow-none hover:shadow-sm sm:px-4 sm:text-sm"
+              className="hidden min-h-9 gap-1.5 px-3 py-2 text-xs shadow-none hover:shadow-sm sm:px-4 sm:text-sm lg:inline-flex"
             >
               Получить смету
             </CtaButton>
@@ -548,12 +548,9 @@ export function HeroSection() {
               Москва и МО
             </p>
 
-            <div className="mt-7 grid gap-3 sm:grid-cols-2 lg:hidden">
+            <div className="mt-7 lg:hidden">
               <CtaButton onClick={openEstimateModal} variant="primary">
                 Получить смету
-              </CtaButton>
-              <CtaButton onClick={openEstimateModal} variant="secondary">
-                Прикрепить ТЗ / схему
               </CtaButton>
             </div>
           </div>
@@ -601,7 +598,7 @@ export function HeroSection() {
           }}
         >
           <div
-            className={`relative max-h-[calc(100vh-1.5rem)] w-full max-w-3xl overflow-y-auto border border-[#F4A11A]/35 bg-white shadow-[0_40px_120px_rgba(0,0,0,0.42)] ring-1 ring-white/60 transition-all duration-200 sm:max-h-[calc(100vh-3rem)] ${
+            className={`relative max-h-[calc(100dvh-24px)] w-[calc(100vw-24px)] max-w-none overflow-y-auto border border-[#F4A11A]/35 bg-white shadow-[0_40px_120px_rgba(0,0,0,0.42)] ring-1 ring-white/60 transition-all duration-200 sm:max-h-[calc(100vh-3rem)] sm:w-full sm:max-w-3xl ${
               isEstimateModalVisible
                 ? "translate-y-0 scale-100 opacity-100"
                 : "translate-y-2 scale-[0.985] opacity-0"
@@ -611,7 +608,7 @@ export function HeroSection() {
               type="button"
               aria-label="Закрыть окно"
               onClick={closeEstimateModal}
-              className="absolute right-3 top-3 z-10 inline-flex size-9 items-center justify-center rounded-full border border-[#0E2748]/12 bg-white text-xl leading-none text-[#0E2748]/60 transition-all duration-200 hover:border-[#F4A11A] hover:text-[#0E2748] hover:shadow-sm"
+              className="sticky right-3 top-3 z-10 ml-auto mr-3 mt-3 inline-flex size-9 items-center justify-center rounded-full border border-[#0E2748]/12 bg-white text-xl leading-none text-[#0E2748]/60 shadow-sm transition-all duration-200 hover:border-[#F4A11A] hover:text-[#0E2748] hover:shadow-sm sm:absolute sm:mr-0 sm:mt-0"
             >
               ×
             </button>

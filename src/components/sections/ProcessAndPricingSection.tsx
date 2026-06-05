@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { CtaButton } from "@/components/ui/CtaButton";
 
@@ -116,7 +116,7 @@ export function ProcessAndPricingSection() {
 
         <details className="mt-10 border border-[#0E2748]/10 bg-white p-5 shadow-[0_16px_42px_rgba(14,39,72,0.06)] md:hidden">
           <summary className="cursor-pointer list-none text-xl font-semibold tracking-tight text-[#0E2748]">
-            Р§С‚Рѕ РІР»РёСЏРµС‚ РЅР° СЃС‚РѕРёРјРѕСЃС‚СЊ
+            Что влияет на стоимость
             <span className="float-right text-[#F4A11A]">+</span>
           </summary>
           <ul className="mt-5 grid gap-y-3">
@@ -194,3 +194,4 @@ export function ProcessAndPricingSection() {
     </section>
   );
 }
+

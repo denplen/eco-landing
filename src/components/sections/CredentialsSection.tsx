@@ -1,4 +1,4 @@
-const yandexMapUrl =
+﻿const yandexMapUrl =
   "https://yandex.ru/map-widget/v1/?z=12&ol=biz&oid=132077742495";
 
 const credentials = [
@@ -81,7 +81,7 @@ export function CredentialsSection() {
             </a>
           </div>
 
-          <div className="mt-6 border border-[#0E2748]/10 bg-white p-1.5 shadow-[0_18px_44px_rgba(14,39,72,0.08)] lg:mt-0 lg:p-2">
+          <div className="mt-6 hidden border border-[#0E2748]/10 bg-white p-1.5 shadow-[0_18px_44px_rgba(14,39,72,0.08)] md:block lg:mt-0 lg:p-2">
             <iframe
               src={yandexMapUrl}
               title="Главгеоком на Яндекс Картах"
@@ -136,11 +136,11 @@ export function CredentialsSection() {
 
         <details className="mt-10 border border-[#0E2748]/10 bg-[#F7F9FC] p-5 shadow-[0_14px_36px_rgba(14,39,72,0.05)] md:hidden">
           <summary className="cursor-pointer list-none text-xl font-semibold tracking-tight text-[#0E2748]">
-            Р РµРєРІРёР·РёС‚С‹ РґР»СЏ РґРѕРіРѕРІРѕСЂР°
+            Реквизиты для договора
             <span className="float-right text-[#F4A11A]">+</span>
           </summary>
           <p className="mt-3 text-sm leading-6 text-[#0E2748]/65">
-            Р”Р°РЅРЅС‹Рµ РєРѕРјРїР°РЅРёРё РґР»СЏ РїСЂРѕРІРµСЂРєРё Рё РїРѕРґРіРѕС‚РѕРІРєРё РґРѕРіРѕРІРѕСЂР°.
+            Данные компании для проверки и подготовки договора.
           </p>
 
           <dl className="mt-5 grid gap-3">
@@ -190,3 +190,4 @@ export function CredentialsSection() {
     </section>
   );
 }
+
