@@ -39,6 +39,13 @@ const surveyTypes = [
   "Не знаю, нужна консультация",
 ];
 
+const heroTrustFacts = [
+  "20+ лет на рынке",
+  "10 000+ объектов",
+  "Член СРО",
+  "Москва и МО",
+];
+
 const workAreas = [
   "Москва ЦАО",
   "Москва САО",
@@ -601,7 +608,7 @@ export function HeroSection() {
 
       <section
         id="top"
-        className="relative scroll-mt-24 overflow-hidden bg-[#F7F9FC] bg-cover bg-center text-[#0E2748]"
+        className="relative min-h-[calc(100svh-4.625rem)] scroll-mt-24 overflow-hidden bg-[#F7F9FC] bg-cover bg-center text-[#0E2748] lg:min-h-0"
         style={{
           backgroundImage: "url('/images/hero-bg-engineering.png')",
         }}
@@ -610,15 +617,23 @@ export function HeroSection() {
         <div className="absolute inset-0 bg-white/4" />
         <div className="absolute inset-y-0 left-0 w-[62%] bg-gradient-to-r from-white/72 via-white/35 to-transparent" />
 
-        <div className="relative mx-auto grid max-w-7xl gap-12 px-4 py-16 sm:px-6 sm:py-20 lg:min-h-[calc(100svh-4.5rem)] lg:grid-cols-[0.88fr_1.12fr] lg:items-center lg:gap-16 lg:px-8 lg:py-24">
-          <div className="max-w-xl">
+        <div className="relative mx-auto flex min-h-[calc(100svh-4.625rem)] max-w-7xl flex-col justify-center gap-12 px-4 pb-28 pt-10 sm:px-6 sm:pb-32 sm:pt-14 lg:grid lg:min-h-[calc(100svh-4.5rem)] lg:grid-cols-[minmax(0,540px)_minmax(560px,1fr)] lg:items-center lg:gap-20 lg:px-8 lg:py-24 xl:gap-24">
+          <div className="w-full max-w-full min-w-0 lg:max-w-xl">
             <p className="inline-flex items-center gap-2 text-sm font-semibold text-[#0E2748]/72">
               <span className="size-2 rounded-full bg-[#F4A11A]" />
               Инженерные изыскания в Москве и Московской области
             </p>
 
-            <h1 className="mt-6 text-4xl font-semibold leading-[1.08] tracking-tight text-balance sm:text-5xl lg:text-[3rem]">
-              Инженерно-экологические изыскания с сопровождением экспертизы
+            <h1 className="mt-6 max-w-xl text-4xl font-semibold leading-[1.08] tracking-tight text-balance sm:text-5xl lg:text-[2.5rem] lg:leading-[1.14] xl:text-[2.75rem]">
+              <span className="lg:hidden">
+                Инженерно-экологические изыскания с сопровождением
+                экспертизы
+              </span>
+              <span className="hidden lg:block">
+                <span className="block">Инженерно&#8209;экологические</span>
+                <span className="block">изыскания с сопровождением</span>
+                <span className="block">экспертизы</span>
+              </span>
             </h1>
 
             <p className="mt-7 max-w-lg text-lg leading-8 text-[#0E2748]/78">
@@ -627,20 +642,18 @@ export function HeroSection() {
               замечания экспертизы в зоне нашей ответственности.
             </p>
 
-            <p className="mt-8 text-sm font-semibold leading-7 text-[#0E2748]/78 sm:text-base">
-              20+ лет на рынке
-              <span aria-hidden="true" className="mx-2 text-[#F4A11A]">
-                ·
-              </span>
-              10 000+ объектов
-              <span aria-hidden="true" className="mx-2 text-[#F4A11A]">
-                ·
-              </span>
-              Член СРО
-              <span aria-hidden="true" className="mx-2 text-[#F4A11A]">
-                ·
-              </span>
-              Москва и МО
+            <p className="mt-8 hidden max-w-xl items-center gap-2.5 text-sm font-semibold leading-6 text-[#0E2748]/78 lg:flex lg:flex-nowrap">
+              {heroTrustFacts.map((fact, index) => (
+                <span key={fact} className="inline-flex shrink-0 items-center gap-2.5">
+                  {index > 0 && (
+                    <span
+                      aria-hidden="true"
+                      className="size-1 rounded-full bg-[#F4A11A]"
+                    />
+                  )}
+                  <span>{fact}</span>
+                </span>
+              ))}
             </p>
 
             <div className="mt-7 lg:hidden">
@@ -650,7 +663,7 @@ export function HeroSection() {
             </div>
           </div>
 
-          <div className="relative mx-auto hidden w-full max-w-2xl lg:block lg:max-w-none">
+          <div className="relative mx-auto hidden w-full max-w-[640px] lg:block">
             <div className="absolute -inset-6 hidden border border-[#0E2748]/8 bg-white/25 backdrop-blur-[2px] lg:block" />
             <div className="absolute -bottom-5 -right-5 hidden size-28 border-b-2 border-r-2 border-[#F4A11A]/55 lg:block" />
             <div className="relative">
