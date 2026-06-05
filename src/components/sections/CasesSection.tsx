@@ -91,10 +91,12 @@ export function CasesSection() {
         </div>
 
         <div className="mt-12 grid gap-5 lg:grid-cols-2">
-          {cases.map((item) => (
+          {cases.map((item, index) => (
             <article
               key={item.number}
-              className="group relative overflow-hidden border border-[#0E2748]/10 bg-white p-6 shadow-[0_14px_36px_rgba(14,39,72,0.05)] transition-all duration-200 hover:-translate-y-[3px] hover:border-[#F4A11A]/55 hover:shadow-[0_20px_46px_rgba(14,39,72,0.10)] sm:p-7"
+              className={`group relative overflow-hidden border border-[#0E2748]/10 bg-white p-6 shadow-[0_14px_36px_rgba(14,39,72,0.05)] transition-all duration-200 hover:-translate-y-[3px] hover:border-[#F4A11A]/55 hover:shadow-[0_20px_46px_rgba(14,39,72,0.10)] sm:p-7 ${
+                index > 1 ? "hidden md:block" : ""
+              }`}
             >
               <div className="absolute inset-y-0 left-0 w-1 bg-[#F4A11A]/75 transition-colors duration-200 group-hover:bg-[#F4A11A]" />
 
@@ -120,7 +122,7 @@ export function CasesSection() {
                 </p>
               </div>
 
-              <div className="mt-5">
+              <div className="mt-5 hidden md:block">
                 <p className="text-xs font-semibold uppercase tracking-[0.12em] text-[#0E2748]/45">
                   Что выполняли
                 </p>
@@ -137,7 +139,7 @@ export function CasesSection() {
                 </ul>
               </div>
 
-              <div className="mt-6 border border-[#F4A11A]/30 bg-[#F7F9FC] p-4">
+              <div className="mt-6 hidden border border-[#F4A11A]/30 bg-[#F7F9FC] p-4 md:block">
                 <p className="text-xs font-semibold uppercase tracking-[0.12em] text-[#F4A11A]">
                   Результат
                 </p>

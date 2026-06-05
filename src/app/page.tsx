@@ -1,5 +1,4 @@
 import { AudienceSolutionsSection } from "@/components/sections/AudienceSolutionsSection";
-import { CasesSection } from "@/components/sections/CasesSection";
 import { CredentialsSection } from "@/components/sections/CredentialsSection";
 import { ExpertiseSupportSection } from "@/components/sections/ExpertiseSupportSection";
 import { FaqContactSection } from "@/components/sections/FaqContactSection";
@@ -15,7 +14,6 @@ export default function Home() {
       <TrustStatsSection />
       <AudienceSolutionsSection />
       <ScopeAndDeliverablesSection />
-      <CasesSection />
       <ExpertiseSupportSection />
       <ProcessAndPricingSection />
       <CredentialsSection />

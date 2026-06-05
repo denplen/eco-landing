@@ -5,11 +5,11 @@ import { useCallback, useEffect, useState, type MouseEvent } from "react";
 import { CtaButton } from "@/components/ui/CtaButton";
 
 const navItems = [
-  { label: "Услуги", href: "#services" },
-  { label: "Объекты", href: "#cases" },
-  { label: "Отзывы", href: "#reviews" },
-  { label: "Процесс", href: "#process" },
-  { label: "FAQ", href: "#faq" },
+  { label: "Опыт", href: "#experience" },
+  { label: "Как работаем", href: "#services" },
+  { label: "Экспертиза", href: "#expertise" },
+  { label: "Смета", href: "#process" },
+  { label: "Реквизиты", href: "#credentials" },
   { label: "Контакты", href: "#contacts" },
 ];
 
@@ -281,6 +281,7 @@ export function HeroSection() {
   const [isEstimateModalVisible, setIsEstimateModalVisible] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [activeNavHref, setActiveNavHref] = useState("");
+  const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
 
   const openEstimateModal = useCallback(() => {
     setIsEstimateModalOpen(true);
@@ -309,6 +310,7 @@ export function HeroSection() {
       behavior: "smooth",
       block: "start",
     });
+    setIsMobileNavOpen(false);
   };
 
   useEffect(() => {
@@ -379,14 +381,21 @@ export function HeroSection() {
     <>
       <header className="sticky top-0 z-40 border-b border-[#0E2748]/10 bg-white/95 shadow-[0_4px_18px_rgba(14,39,72,0.05)] backdrop-blur-sm">
         <div className="mx-auto flex min-h-[4.5rem] max-w-7xl items-center justify-between gap-3 px-4 py-3 sm:px-6 lg:px-8">
-          <Image
-            src="/images/logo_horizont.svg"
-            alt="Главгеоком"
-            width={210}
-            height={60}
-            priority
-            className="h-auto w-32 shrink-0 sm:w-40"
-          />
+          <a
+            href="#top"
+            aria-label="Перейти в начало страницы"
+            onClick={(event) => handleNavClick(event, "#top")}
+            className="shrink-0"
+          >
+            <Image
+              src="/images/logo_horizont.svg"
+              alt="Главгеоком"
+              width={210}
+              height={60}
+              priority
+              className="h-auto w-32 sm:w-40"
+            />
+          </a>
 
           <nav aria-label="Основная навигация" className="hidden xl:block">
             <ul className="flex items-center gap-5">
@@ -432,14 +441,14 @@ export function HeroSection() {
             </div>
 
             <a
-              href="#contact"
+              href="#contacts"
               aria-label="Связаться в Telegram"
               className="hidden size-8 items-center justify-center rounded-full border border-[#0E2748]/15 text-[10px] font-bold text-[#0E2748] transition-colors hover:border-[#F4A11A] hover:text-[#F4A11A] sm:inline-flex"
             >
               TG
             </a>
             <a
-              href="#contact"
+              href="#contacts"
               aria-label="Связаться в MAX"
               className="hidden size-8 items-center justify-center rounded-full border border-[#0E2748]/15 text-[10px] font-bold text-[#0E2748] transition-colors hover:border-[#F4A11A] hover:text-[#F4A11A] sm:inline-flex"
             >
@@ -452,8 +461,41 @@ export function HeroSection() {
             >
               Получить смету
             </CtaButton>
+            <button
+              type="button"
+              aria-label="Открыть меню"
+              aria-expanded={isMobileNavOpen}
+              onClick={() => setIsMobileNavOpen((isOpen) => !isOpen)}
+              className="inline-flex min-h-9 items-center justify-center rounded-sm border border-[#0E2748]/15 px-3 text-xs font-semibold text-[#0E2748] transition-colors hover:border-[#F4A11A] hover:text-[#F4A11A] xl:hidden"
+            >
+              Меню
+            </button>
           </div>
         </div>
+        {isMobileNavOpen && (
+          <nav
+            aria-label="Мобильная навигация"
+            className="border-t border-[#0E2748]/10 bg-white px-4 py-3 shadow-[0_12px_28px_rgba(14,39,72,0.08)] sm:px-6 xl:hidden"
+          >
+            <ul className="grid gap-1">
+              {navItems.map((item) => (
+                <li key={`${item.label}-${item.href}`}>
+                  <a
+                    href={item.href}
+                    onClick={(event) => handleNavClick(event, item.href)}
+                    className={`block rounded-sm px-3 py-2 text-sm font-medium transition-colors duration-200 hover:bg-[#F4A11A]/8 hover:text-[#F4A11A] ${
+                      activeNavHref === item.href
+                        ? "bg-[#F4A11A]/10 text-[#F4A11A]"
+                        : "text-[#0E2748]/72"
+                    }`}
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        )}
         <div className="h-0.5 w-full bg-[#0E2748]/5">
           <div
             className="h-full bg-[#F4A11A] transition-[width] duration-150"
@@ -505,9 +547,18 @@ export function HeroSection() {
               </span>
               Москва и МО
             </p>
+
+            <div className="mt-7 grid gap-3 sm:grid-cols-2 lg:hidden">
+              <CtaButton onClick={openEstimateModal} variant="primary">
+                Получить смету
+              </CtaButton>
+              <CtaButton onClick={openEstimateModal} variant="secondary">
+                Прикрепить ТЗ / схему
+              </CtaButton>
+            </div>
           </div>
 
-          <div className="relative mx-auto w-full max-w-2xl lg:max-w-none">
+          <div className="relative mx-auto hidden w-full max-w-2xl lg:block lg:max-w-none">
             <div className="absolute -inset-6 hidden border border-[#0E2748]/8 bg-white/25 backdrop-blur-[2px] lg:block" />
             <div className="absolute -bottom-5 -right-5 hidden size-28 border-b-2 border-r-2 border-[#F4A11A]/55 lg:block" />
             <div className="relative">
@@ -516,6 +567,24 @@ export function HeroSection() {
           </div>
         </div>
       </section>
+
+      <div className="fixed inset-x-0 bottom-0 z-40 border-t border-[#0E2748]/10 bg-white/95 px-3 py-2 shadow-[0_-12px_28px_rgba(14,39,72,0.12)] backdrop-blur-sm lg:hidden">
+        <div className="grid grid-cols-2 gap-2">
+          <a
+            href="tel:+74993808104"
+            className="inline-flex min-h-11 items-center justify-center rounded-sm border border-[#0E2748]/20 bg-white px-3 text-sm font-semibold text-[#0E2748]"
+          >
+            Позвонить
+          </a>
+          <CtaButton
+            onClick={openEstimateModal}
+            variant="primary"
+            className="min-h-11 px-3 py-2 text-sm"
+          >
+            Получить смету
+          </CtaButton>
+        </div>
+      </div>
 
       {isEstimateModalOpen && (
         <div

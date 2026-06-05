@@ -35,6 +35,12 @@ const processSteps = [
   },
 ];
 
+const mobileProcessSteps = [
+  "Отправляете параметры объекта",
+  "Уточняем состав работ и смету",
+  "Выполняем изыскания и передаём отчёт",
+];
+
 const pricingFactors = [
   "Тип и назначение объекта",
   "Площадь участка или протяжённость трассы",
@@ -72,7 +78,23 @@ export function ProcessAndPricingSection() {
             Как проходит работа
           </h3>
 
-          <ol className="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+          <ol className="mt-7 grid gap-4 md:hidden">
+            {mobileProcessSteps.map((step, index) => (
+              <li
+                key={step}
+                className="border border-[#0E2748]/10 bg-white p-5 shadow-[0_12px_30px_rgba(14,39,72,0.05)]"
+              >
+                <span className="text-xs font-semibold uppercase tracking-[0.16em] text-[#F4A11A]">
+                  0{index + 1}
+                </span>
+                <h4 className="mt-3 text-base font-semibold leading-6 text-[#0E2748]">
+                  {step}
+                </h4>
+              </li>
+            ))}
+          </ol>
+
+          <ol className="mt-7 hidden gap-4 md:grid sm:grid-cols-2 lg:grid-cols-5">
             {processSteps.map((step) => (
               <li
                 key={step.number}
@@ -92,7 +114,25 @@ export function ProcessAndPricingSection() {
           </ol>
         </div>
 
-        <div className="mt-10 border border-[#0E2748]/10 bg-white p-6 shadow-[0_16px_42px_rgba(14,39,72,0.06)] sm:p-8 lg:grid lg:grid-cols-[1.18fr_0.82fr] lg:gap-10">
+        <details className="mt-10 border border-[#0E2748]/10 bg-white p-5 shadow-[0_16px_42px_rgba(14,39,72,0.06)] md:hidden">
+          <summary className="cursor-pointer list-none text-xl font-semibold tracking-tight text-[#0E2748]">
+            Р§С‚Рѕ РІР»РёСЏРµС‚ РЅР° СЃС‚РѕРёРјРѕСЃС‚СЊ
+            <span className="float-right text-[#F4A11A]">+</span>
+          </summary>
+          <ul className="mt-5 grid gap-y-3">
+            {pricingFactors.map((factor) => (
+              <li
+                key={factor}
+                className="flex items-start gap-3 border-t border-[#0E2748]/8 pt-3 text-sm leading-6 text-[#0E2748]/68"
+              >
+                <span className="mt-2 size-1.5 shrink-0 rounded-full bg-[#F4A11A]" />
+                {factor}
+              </li>
+            ))}
+          </ul>
+        </details>
+
+        <div className="mt-10 hidden border border-[#0E2748]/10 bg-white p-6 shadow-[0_16px_42px_rgba(14,39,72,0.06)] md:block sm:p-8 lg:grid lg:grid-cols-[1.18fr_0.82fr] lg:gap-10">
           <div>
             <h3 className="text-2xl font-semibold tracking-tight text-[#0E2748]">
               Что влияет на стоимость

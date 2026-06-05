@@ -80,7 +80,7 @@ export function AudienceSolutionsSection() {
                 {audience.description}
               </p>
 
-              <ul className="mt-7 space-y-4 border-t border-[#0E2748]/10 pt-6">
+              <ul className="mt-7 hidden space-y-4 border-t border-[#0E2748]/10 pt-6 md:block">
                 {audience.points.map((point) => (
                   <li
                     key={point}

@@ -72,7 +72,7 @@ export function ScopeAndDeliverablesSection() {
   return (
     <section
       id="services"
-      className="scroll-mt-24 bg-white py-16 text-[#0E2748] sm:py-20 lg:py-24"
+      className="scroll-mt-24 bg-white pb-8 pt-16 text-[#0E2748] sm:pb-10 sm:pt-20 lg:pb-10 lg:pt-24"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl">
@@ -108,7 +108,10 @@ export function ScopeAndDeliverablesSection() {
                 <h4 className="mt-4 text-xl font-semibold tracking-tight text-[#0E2748]">
                   {stage.title}
                 </h4>
-                <ul className="mt-5 space-y-3">
+                <p className="mt-3 text-sm leading-6 text-[#0E2748]/65 sm:hidden">
+                  {stage.points[0]}
+                </p>
+                <ul className="mt-5 hidden space-y-3 sm:block">
                   {stage.points.map((point) => (
                     <li
                       key={point}
@@ -124,7 +127,42 @@ export function ScopeAndDeliverablesSection() {
           </ol>
         </div>
 
-        <div className="mt-10 border border-[#0E2748]/10 bg-white p-6 shadow-[0_18px_46px_rgba(14,39,72,0.07)] sm:p-8">
+        <details className="mt-10 border border-[#0E2748]/10 bg-white p-5 shadow-[0_18px_46px_rgba(14,39,72,0.07)] md:hidden">
+          <summary className="cursor-pointer list-none text-xl font-semibold tracking-tight text-[#0E2748]">
+            Р§С‚Рѕ РїРѕР»СѓС‡Р°РµС‚ Р·Р°РєР°Р·С‡РёРє
+            <span className="float-right text-[#F4A11A]">+</span>
+          </summary>
+          <ul className="mt-5 grid gap-y-3">
+            {deliverables.map((deliverable) => (
+              <li
+                key={deliverable}
+                className="flex items-start gap-3 border-t border-[#0E2748]/8 pt-3 text-sm leading-6 text-[#0E2748]/70"
+              >
+                <span className="mt-2 size-1.5 shrink-0 rounded-full bg-[#F4A11A]" />
+                {deliverable}
+              </li>
+            ))}
+          </ul>
+
+          <div className="mt-6 border border-[#F4A11A]/40 border-l-3 bg-[#F7F9FC] p-4">
+            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#F4A11A]">
+              Р“Р»Р°РІРЅС‹Р№ СЂРµР·СѓР»СЊС‚Р°С‚
+            </p>
+            <h4 className="mt-2 text-lg font-semibold text-[#0E2748]">
+              РўРµС…РЅРёС‡РµСЃРєРёР№ РѕС‚С‡С‘С‚
+            </h4>
+            <a
+              href="https://glavgeocom.ru/netcat_files/4/22/TO_Ekologicheskie_izyskaniya_primer_.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-4 inline-flex min-h-10 items-center justify-center rounded-sm border border-[#0E2748]/30 bg-white px-4 py-2.5 text-sm font-semibold text-[#0E2748] transition-colors duration-200 hover:border-[#F4A11A] hover:bg-[#F4A11A]/5"
+            >
+              РџРѕСЃРјРѕС‚СЂРµС‚СЊ РїСЂРёРјРµСЂ РѕС‚С‡С‘С‚Р°
+            </a>
+          </div>
+        </details>
+
+        <div className="mt-10 hidden border border-[#0E2748]/10 bg-white p-6 shadow-[0_18px_46px_rgba(14,39,72,0.07)] md:block sm:p-8">
           <h3 className="text-2xl font-semibold tracking-tight text-[#0E2748]">
             Что получает заказчик
           </h3>
@@ -211,21 +249,21 @@ export function ScopeAndDeliverablesSection() {
             {turnkeySurveys.map((survey) => (
               <article
                 key={survey.title}
-                className={`border bg-white p-5 ${
+                className={`group border bg-white p-5 transition-all duration-300 ease-out hover:-translate-y-1 hover:border-[#F4A11A] hover:shadow-[0_18px_45px_rgba(14,39,72,0.12)] focus-within:-translate-y-1 focus-within:border-[#F4A11A] focus-within:shadow-[0_18px_45px_rgba(14,39,72,0.12)] ${
                   survey.primary
                     ? "border-[#F4A11A]/55 shadow-[0_10px_26px_rgba(14,39,72,0.06)]"
                     : "border-[#0E2748]/10"
                 }`}
               >
                 <div
-                  className={`h-1 w-10 ${
+                  className={`h-1 w-10 transition-all duration-300 ease-out group-hover:w-14 group-hover:bg-[#F4A11A] group-focus-within:w-14 group-focus-within:bg-[#F4A11A] ${
                     survey.primary ? "bg-[#F4A11A]" : "bg-[#0E2748]/18"
                   }`}
                 />
-                <h4 className="mt-4 text-base font-semibold leading-6 text-[#0E2748]">
+                <h4 className="mt-4 text-base font-semibold leading-6 text-[#0E2748] transition-colors duration-300 group-hover:text-[#0A1E38]">
                   {survey.title}
                 </h4>
-                <p className="mt-2 text-sm leading-6 text-[#0E2748]/58">
+                <p className="mt-2 hidden text-sm leading-6 text-[#0E2748]/58 sm:block">
                   {survey.description}
                 </p>
               </article>
@@ -234,7 +272,7 @@ export function ScopeAndDeliverablesSection() {
 
         </div>
 
-        <div className="mt-12 border border-[#0E2748]/10 bg-[#F7F9FC] p-6 sm:flex sm:items-center sm:justify-between sm:gap-8 sm:p-8">
+        <div className="mt-12 hidden border border-[#0E2748]/10 bg-[#F7F9FC] p-6 sm:flex sm:items-center sm:justify-between sm:gap-8 sm:p-8">
           <div className="max-w-2xl">
             <h3 className="text-xl font-semibold tracking-tight text-[#0E2748] sm:text-2xl">
               Хотите понять, какие работы потребуются вашему объекту?

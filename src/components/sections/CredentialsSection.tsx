@@ -90,7 +90,7 @@ export function CredentialsSection() {
               frameBorder="0"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              className="block h-[360px] w-full sm:h-[400px]"
+              className="block h-[320px] w-full sm:h-[400px]"
             />
           </div>
         </div>
@@ -134,7 +134,33 @@ export function CredentialsSection() {
           ))}
         </div>
 
-        <div className="mt-10 border border-[#0E2748]/10 bg-[#F7F9FC] p-6 shadow-[0_14px_36px_rgba(14,39,72,0.05)] sm:p-8">
+        <details className="mt-10 border border-[#0E2748]/10 bg-[#F7F9FC] p-5 shadow-[0_14px_36px_rgba(14,39,72,0.05)] md:hidden">
+          <summary className="cursor-pointer list-none text-xl font-semibold tracking-tight text-[#0E2748]">
+            Р РµРєРІРёР·РёС‚С‹ РґР»СЏ РґРѕРіРѕРІРѕСЂР°
+            <span className="float-right text-[#F4A11A]">+</span>
+          </summary>
+          <p className="mt-3 text-sm leading-6 text-[#0E2748]/65">
+            Р”Р°РЅРЅС‹Рµ РєРѕРјРїР°РЅРёРё РґР»СЏ РїСЂРѕРІРµСЂРєРё Рё РїРѕРґРіРѕС‚РѕРІРєРё РґРѕРіРѕРІРѕСЂР°.
+          </p>
+
+          <dl className="mt-5 grid gap-3">
+            {companyDetails.map(([label, value]) => (
+              <div
+                key={label}
+                className="border border-[#0E2748]/8 bg-white/70 px-4 py-3.5 shadow-[0_8px_20px_rgba(14,39,72,0.025)]"
+              >
+                <dt className="text-sm font-medium leading-6 text-[#0E2748]/58">
+                  {label}
+                </dt>
+                <dd className="mt-1 text-sm font-semibold leading-6 text-[#0E2748]">
+                  {value}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </details>
+
+        <div className="mt-10 hidden border border-[#0E2748]/10 bg-[#F7F9FC] p-6 shadow-[0_14px_36px_rgba(14,39,72,0.05)] md:block sm:p-8">
           <div className="max-w-2xl">
             <h3 className="text-2xl font-semibold tracking-tight text-[#0E2748]">
               Реквизиты для договора

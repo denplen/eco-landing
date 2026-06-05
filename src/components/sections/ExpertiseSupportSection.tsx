@@ -36,7 +36,7 @@ export function ExpertiseSupportSection() {
   return (
     <section
       id="expertise"
-      className="scroll-mt-24 bg-white py-16 text-[#0E2748] sm:py-20 lg:py-24"
+      className="scroll-mt-24 bg-white pb-16 pt-8 text-[#0E2748] sm:pb-20 sm:pt-10 lg:pb-24 lg:pt-10"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl">
@@ -59,7 +59,7 @@ export function ExpertiseSupportSection() {
             <h3 className="text-2xl font-semibold tracking-tight text-[#0E2748]">
               Что происходит после выдачи отчёта
             </h3>
-            <p className="mt-5 text-sm leading-7 text-[#0E2748]/68 sm:text-base">
+            <p className="mt-5 hidden text-sm leading-7 text-[#0E2748]/68 md:block sm:text-base">
               После передачи материалов у проектировщиков или экспертной
               организации могут возникнуть вопросы по составу работ, исходным
               данным, результатам исследований или выводам. Мы остаёмся на
@@ -95,7 +95,7 @@ export function ExpertiseSupportSection() {
                   <h4 className="mt-3 text-base font-semibold leading-6 text-[#0E2748]">
                     {point.title}
                   </h4>
-                  <p className="mt-2 text-sm leading-6 text-[#0E2748]/60">
+                  <p className="mt-2 hidden text-sm leading-6 text-[#0E2748]/60 md:block">
                     {point.description}
                   </p>
                 </article>
@@ -117,7 +117,7 @@ export function ExpertiseSupportSection() {
           </div>
         </div>
 
-        <div className="mt-8 border border-[#0E2748]/10 bg-white p-6 shadow-[0_12px_32px_rgba(14,39,72,0.04)]">
+        <div className="mt-8 hidden border border-[#0E2748]/10 bg-white p-6 shadow-[0_12px_32px_rgba(14,39,72,0.04)] md:block">
           <ol className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {processSteps.map((step, index) => (
               <li
@@ -135,7 +135,7 @@ export function ExpertiseSupportSection() {
           </ol>
         </div>
 
-        <p className="mt-8 border-t border-[#0E2748]/10 pt-5 text-sm leading-6 text-[#0E2748]/62">
+        <p className="mt-8 hidden border-t border-[#0E2748]/10 pt-5 text-sm leading-6 text-[#0E2748]/62 md:block">
           Вопросы экспертизы лучше учитывать до старта работ: это снижает риск
           доработок и помогает проектировщикам использовать отчёт без лишних
           уточнений.

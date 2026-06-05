@@ -60,14 +60,10 @@ const contactCardClassName =
 export function FaqContactSection() {
   return (
     <section
-      id="faq"
-      className="scroll-mt-24 bg-[#0E2748] py-16 text-white sm:py-20 lg:py-24"
+      className="scroll-mt-24 bg-[#0E2748] pb-28 pt-16 text-white sm:py-20 lg:py-24"
     >
-      <div
-        id="contacts"
-        className="mx-auto max-w-7xl scroll-mt-24 px-4 sm:px-6 lg:px-8"
-      >
-        <div>
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div id="faq" className="scroll-mt-24">
           <p className="inline-flex items-center gap-2 text-sm font-semibold text-white/65">
             <span className="size-2 rounded-full bg-[#F4A11A]" />
             FAQ
@@ -104,7 +100,10 @@ export function FaqContactSection() {
           </div>
         </div>
 
-        <div className="mt-12 border border-white/12 bg-white/[0.06] p-7 shadow-[0_24px_60px_rgba(0,0,0,0.18)] sm:p-10 lg:grid lg:grid-cols-[0.95fr_1.05fr] lg:gap-12">
+        <div
+          id="contacts"
+          className="mt-12 scroll-mt-24 border border-white/12 bg-white/[0.06] p-7 shadow-[0_24px_60px_rgba(0,0,0,0.18)] sm:p-10 lg:grid lg:grid-cols-[0.95fr_1.05fr] lg:gap-12"
+        >
           <div>
             <Image
               src="/images/logo_horizont_dark_bg.svg"
