@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { CtaButton } from "@/components/ui/CtaButton";
 import {
   CornerMarkers,
@@ -66,8 +65,8 @@ export function FaqContactSection() {
     <section
       className="relative scroll-mt-24 overflow-hidden bg-[#0E2748] pb-28 pt-16 text-white sm:py-20 lg:py-24"
     >
-      <EngineeringGrid className="right-8 top-12 hidden h-52 w-96 opacity-30 lg:block" />
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <EngineeringGrid className="right-8 top-12 hidden h-52 w-96 opacity-45 lg:block" />
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div id="faq" className="scroll-mt-24">
           <p className="inline-flex items-center gap-2 text-sm font-semibold text-white/65">
             <span className="size-2 rounded-full bg-[#F4A11A]" />
@@ -86,8 +85,12 @@ export function FaqContactSection() {
               <details
                 key={item.question}
                 open={index === 0}
-                className="group border border-white/10 bg-white/[0.04] p-4 transition-colors duration-200 open:border-[#F4A11A]/55 open:bg-white/[0.07] hover:border-[#F4A11A]/40"
+                className="group relative border border-white/12 bg-white/[0.04] p-4 transition-colors duration-200 open:border-[#F4A11A]/60 open:bg-white/[0.07] hover:border-[#F4A11A]/45"
               >
+                <span
+                  aria-hidden="true"
+                  className="pointer-events-none absolute left-0 top-0 h-full w-px bg-[#F4A11A]/0 transition-colors duration-200 group-open:bg-[#F4A11A]/70 group-hover:bg-[#F4A11A]/45"
+                />
                 <summary className="flex cursor-pointer list-none items-start justify-between gap-4 text-base font-semibold leading-6 text-white">
                   <span>{item.question}</span>
                   <span
@@ -109,13 +112,12 @@ export function FaqContactSection() {
           id="contacts"
           className="relative mt-12 scroll-mt-24 border border-white/12 bg-white/[0.06] p-7 shadow-[0_24px_60px_rgba(0,0,0,0.18)] sm:p-10 lg:grid lg:grid-cols-[0.95fr_1.05fr] lg:gap-12"
         >
-          <CornerMarkers className="hidden lg:block" />
+          <CornerMarkers className="hidden opacity-90 lg:block" />
           <div>
-            <Image
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
               src="/images/logo_horizont_dark_bg.svg"
               alt="Главгеоком"
-              width={230}
-              height={62}
               className="h-auto w-[200px] sm:w-[230px]"
             />
             <h3 className="mt-5 text-2xl font-semibold tracking-tight text-white sm:text-3xl">

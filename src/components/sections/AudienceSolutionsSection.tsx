@@ -1,3 +1,8 @@
+import {
+  CornerMarkers,
+  EngineeringGrid,
+} from "@/components/ui/EngineeringDecor";
+
 const audiences = [
   {
     number: "01",
@@ -41,9 +46,10 @@ export function AudienceSolutionsSection() {
   return (
     <section
       id="audience"
-      className="scroll-mt-24 bg-[#F7F9FC] py-10 text-[#0E2748] sm:py-20 lg:py-24"
+      className="relative scroll-mt-24 overflow-hidden bg-[#F7F9FC] py-10 text-[#0E2748] sm:py-20 lg:py-24"
     >
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <EngineeringGrid className="right-10 top-16 hidden h-44 w-80 opacity-45 lg:block" />
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl">
           <p className="inline-flex items-center gap-2 text-sm font-semibold text-[#0E2748]/60">
             <span className="size-2 rounded-full bg-[#F4A11A]" />
@@ -64,13 +70,14 @@ export function AudienceSolutionsSection() {
               key={audience.number}
               className="group relative flex min-h-full flex-col overflow-hidden border border-[#0E2748]/10 bg-white p-3.5 shadow-[0_12px_32px_rgba(14,39,72,0.05)] transition-all duration-200 hover:-translate-y-[3px] hover:border-[#F4A11A]/55 hover:shadow-[0_20px_46px_rgba(14,39,72,0.10)] sm:p-7"
             >
-              <div className="absolute inset-x-0 top-0 h-0.5 bg-[#F4A11A]/70 transition-colors duration-200 group-hover:bg-[#F4A11A] sm:h-1" />
+              <CornerMarkers className="hidden opacity-0 transition-opacity duration-200 group-hover:opacity-100 sm:block" />
+              <div className="absolute inset-x-0 top-0 h-0.5 bg-[#F4A11A]/85 transition-colors duration-200 group-hover:bg-[#F4A11A] sm:h-1" />
 
               <div className="flex items-center justify-between gap-4">
                 <span className="text-xs font-semibold uppercase tracking-[0.16em] text-[#F4A11A]">
                   {audience.number}
                 </span>
-                <span className="h-px flex-1 bg-[#0E2748]/10" />
+                <span className="h-px flex-1 bg-[#0E2748]/16" />
               </div>
 
               <h3 className="mt-3 text-xl font-semibold tracking-tight text-[#0E2748] sm:mt-6 sm:text-2xl">

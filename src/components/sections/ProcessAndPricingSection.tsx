@@ -61,8 +61,8 @@ export function ProcessAndPricingSection() {
       id="process"
       className="relative scroll-mt-24 overflow-hidden bg-[#F7F9FC] py-16 text-[#0E2748] sm:py-20 lg:py-24"
     >
-      <EngineeringGrid className="right-8 top-12 hidden h-44 w-80 opacity-50 lg:block" />
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <EngineeringGrid className="right-8 top-12 hidden h-44 w-80 opacity-65 lg:block" />
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl">
           <p className="inline-flex items-center gap-2 text-sm font-semibold text-[#0E2748]/60">
             <span className="size-2 rounded-full bg-[#F4A11A]" />
@@ -100,12 +100,18 @@ export function ProcessAndPricingSection() {
           </ol>
 
           <ol className="mt-7 hidden gap-4 md:grid sm:grid-cols-2 lg:grid-cols-5">
-            {processSteps.map((step) => (
+            {processSteps.map((step, index) => (
               <li
                 key={step.number}
                 className="group relative min-h-56 border border-[#0E2748]/10 bg-white p-5 shadow-[0_12px_30px_rgba(14,39,72,0.05)] transition-all duration-200 hover:-translate-y-[2px] hover:border-[#F4A11A]/50 hover:shadow-[0_18px_38px_rgba(14,39,72,0.09)]"
               >
                 <CornerMarkers className="opacity-0 transition-opacity duration-200 group-hover:opacity-100" />
+                {index < processSteps.length - 1 ? (
+                  <span
+                    aria-hidden="true"
+                    className="absolute left-[calc(100%+0.25rem)] top-9 hidden h-px w-3 bg-[#F4A11A]/55 lg:block"
+                  />
+                ) : null}
                 <span className="text-xs font-semibold uppercase tracking-[0.16em] text-[#F4A11A]">
                   Шаг {step.number}
                 </span>
@@ -138,7 +144,8 @@ export function ProcessAndPricingSection() {
           </ul>
         </details>
 
-        <div className="mt-10 hidden border border-[#0E2748]/10 bg-white p-6 shadow-[0_16px_42px_rgba(14,39,72,0.06)] md:block sm:p-8 lg:grid lg:grid-cols-[1.18fr_0.82fr] lg:gap-10">
+        <div className="relative mt-10 hidden border border-[#0E2748]/10 bg-white p-6 shadow-[0_16px_42px_rgba(14,39,72,0.06)] md:block sm:p-8 lg:grid lg:grid-cols-[1.18fr_0.82fr] lg:gap-10">
+          <CornerMarkers className="opacity-55" />
           <div>
             <h3 className="text-2xl font-semibold tracking-tight text-[#0E2748]">
               Что влияет на стоимость
@@ -175,7 +182,8 @@ export function ProcessAndPricingSection() {
           </div>
         </div>
 
-        <div className="mt-10 border border-[#0E2748]/10 bg-white p-6 shadow-[0_14px_36px_rgba(14,39,72,0.05)] sm:flex sm:items-center sm:justify-between sm:gap-8 sm:p-8">
+        <div className="relative mt-10 border border-[#0E2748]/10 bg-white p-6 shadow-[0_14px_36px_rgba(14,39,72,0.05)] sm:flex sm:items-center sm:justify-between sm:gap-8 sm:p-8">
+          <CornerMarkers className="hidden opacity-55 sm:block" />
           <div className="max-w-2xl">
             <h3 className="text-xl font-semibold tracking-tight text-[#0E2748] sm:text-2xl">
               Получите смету после анализа параметров объекта

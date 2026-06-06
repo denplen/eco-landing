@@ -1,6 +1,11 @@
 ﻿"use client";
 
 import { CtaButton } from "@/components/ui/CtaButton";
+import {
+  CornerMarkers,
+  EngineeringGrid,
+  TopoLines,
+} from "@/components/ui/EngineeringDecor";
 
 const workStages = [
   {
@@ -76,9 +81,11 @@ export function ScopeAndDeliverablesSection() {
   return (
     <section
       id="services"
-      className="scroll-mt-24 bg-white pb-8 pt-16 text-[#0E2748] sm:pb-10 sm:pt-20 lg:pb-10 lg:pt-24"
+      className="relative scroll-mt-24 overflow-hidden bg-white pb-8 pt-16 text-[#0E2748] sm:pb-10 sm:pt-20 lg:pb-10 lg:pt-24"
     >
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <TopoLines className="left-[-8rem] top-28 hidden h-64 w-[34rem] rotate-180 lg:block" />
+      <EngineeringGrid className="right-8 top-20 hidden h-44 w-80 opacity-35 lg:block" />
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl">
           <p className="inline-flex items-center gap-2 text-sm font-semibold text-[#0E2748]/60">
             <span className="size-2 rounded-full bg-[#F4A11A]" />
@@ -105,6 +112,7 @@ export function ScopeAndDeliverablesSection() {
                 key={stage.number}
                 className="group relative min-h-0 overflow-hidden border border-[#0E2748]/10 bg-[#F7F9FC] p-3.5 shadow-[0_12px_30px_rgba(14,39,72,0.05)] transition-all duration-200 hover:-translate-y-[3px] hover:border-[#F4A11A]/55 hover:shadow-[0_18px_40px_rgba(14,39,72,0.10)] sm:min-h-60 sm:p-6"
               >
+                <CornerMarkers className="hidden opacity-0 transition-opacity duration-200 group-hover:opacity-100 sm:block" />
                 <div className="absolute inset-x-0 top-0 h-1 bg-[#F4A11A]/75 transition-colors duration-200 group-hover:bg-[#F4A11A]" />
                 <span className="text-xs font-semibold uppercase tracking-[0.16em] text-[#F4A11A]">
                   Этап {stage.number}
@@ -148,7 +156,8 @@ export function ScopeAndDeliverablesSection() {
             ))}
           </ul>
 
-          <div className="mt-6 border border-[#F4A11A]/40 border-l-3 bg-[#F7F9FC] p-4">
+          <div className="relative mt-6 border border-[#F4A11A]/50 border-l-3 bg-[#F7F9FC] p-4">
+            <CornerMarkers className="opacity-60" />
             <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#F4A11A]">
               Главный результат
             </p>
@@ -197,7 +206,8 @@ export function ScopeAndDeliverablesSection() {
             ))}
           </ul>
 
-          <div className="mt-8 border border-[#F4A11A]/40 border-l-3 bg-[#F7F9FC] p-5 sm:flex sm:items-center sm:justify-between sm:gap-8">
+          <div className="relative mt-8 border border-[#F4A11A]/50 border-l-3 bg-[#F7F9FC] p-5 sm:flex sm:items-center sm:justify-between sm:gap-8">
+            <CornerMarkers className="opacity-60" />
             <div className="max-w-3xl">
               <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#F4A11A]">
                 Главный результат
@@ -253,12 +263,13 @@ export function ScopeAndDeliverablesSection() {
             {turnkeySurveys.map((survey) => (
               <article
                 key={survey.title}
-                className={`group border bg-white p-5 transition-all duration-300 ease-out hover:-translate-y-1 hover:border-[#F4A11A] hover:shadow-[0_18px_45px_rgba(14,39,72,0.12)] focus-within:-translate-y-1 focus-within:border-[#F4A11A] focus-within:shadow-[0_18px_45px_rgba(14,39,72,0.12)] ${
+                className={`group relative border bg-white p-5 transition-all duration-300 ease-out hover:-translate-y-1 hover:border-[#F4A11A] hover:shadow-[0_18px_45px_rgba(14,39,72,0.12)] focus-within:-translate-y-1 focus-within:border-[#F4A11A] focus-within:shadow-[0_18px_45px_rgba(14,39,72,0.12)] ${
                   survey.primary
                     ? "border-[#F4A11A]/55 shadow-[0_10px_26px_rgba(14,39,72,0.06)]"
                     : "border-[#0E2748]/10"
                 }`}
               >
+                <CornerMarkers className="hidden opacity-0 transition-opacity duration-200 group-hover:opacity-100 sm:block" />
                 <div
                   className={`h-1 w-10 transition-all duration-300 ease-out group-hover:w-14 group-hover:bg-[#F4A11A] group-focus-within:w-14 group-focus-within:bg-[#F4A11A] ${
                     survey.primary ? "bg-[#F4A11A]" : "bg-[#0E2748]/18"

@@ -43,6 +43,7 @@ function PhotoCard({
     <figure
       className={`group relative overflow-hidden border border-[#0E2748]/10 bg-white shadow-[0_14px_36px_rgba(14,39,72,0.08)] ${className}`}
     >
+      <CornerMarkers className="z-10 hidden opacity-80 sm:block" />
       <Image
         src={photo.src}
         alt={photo.alt}
@@ -50,7 +51,7 @@ function PhotoCard({
         sizes={sizes}
         className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
       />
-      <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#0E2748]/78 via-[#0E2748]/34 to-transparent px-4 pb-4 pt-14">
+      <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#0E2748]/88 via-[#0E2748]/45 to-transparent px-4 pb-4 pt-16">
         <figcaption className="text-sm font-semibold text-white">
           {photo.title}
         </figcaption>
@@ -62,7 +63,7 @@ function PhotoCard({
 export function FieldWorkGallerySection() {
   return (
     <section className="relative overflow-hidden bg-[#F7F9FC] py-12 text-[#0E2748] sm:py-18 lg:py-20">
-      <EngineeringGrid className="left-8 top-16 hidden h-40 w-80 opacity-45 lg:block" />
+      <EngineeringGrid className="left-8 top-16 hidden h-40 w-80 opacity-65 lg:block" />
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl">
           <p className="inline-flex items-center gap-2 text-sm font-semibold text-[#0E2748]/60">

@@ -1,13 +1,23 @@
 "use client";
 
 import Image from "next/image";
-import { useCallback, useEffect, useState, type MouseEvent } from "react";
+import {
+  useCallback,
+  useEffect,
+  useState,
+  type FormEvent,
+  type MouseEvent,
+} from "react";
 import { CtaButton } from "@/components/ui/CtaButton";
 import {
   CornerMarkers,
   EngineeringGrid,
   TopoLines,
 } from "@/components/ui/EngineeringDecor";
+import {
+  formatRussianPhone,
+  isRussianPhoneComplete,
+} from "@/lib/phoneMask";
 
 const navItems = [
   { label: "Опыт", href: "#experience" },
@@ -107,15 +117,83 @@ type EstimateFormProps = {
 };
 
 function EstimateForm({ id, compact = false }: EstimateFormProps) {
+  const [submitStatus, setSubmitStatus] = useState<
+    "idle" | "loading" | "success" | "error"
+  >("idle");
+  const [submitMessage, setSubmitMessage] = useState("");
+  const [phoneValue, setPhoneValue] = useState("+7 ");
+
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+    const currentUrl = new URL(window.location.href);
+    const formattedPhone = formatRussianPhone(phoneValue);
+
+    if (!isRussianPhoneComplete(formattedPhone)) {
+      setSubmitStatus("error");
+      setSubmitMessage("Укажите телефон полностью");
+      return;
+    }
+
+    formData.set("phone", formattedPhone);
+    formData.set("pageUrl", currentUrl.href);
+    ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"].forEach(
+      (key) => {
+        formData.set(key, currentUrl.searchParams.get(key) ?? "");
+      },
+    );
+
+    setSubmitStatus("loading");
+    setSubmitMessage("Отправляем...");
+
+    try {
+      const response = await fetch("/api/lead", {
+        method: "POST",
+        body: formData,
+      });
+      const result = (await response.json()) as {
+        ok?: boolean;
+        error?: string;
+      };
+
+      if (!response.ok || !result.ok) {
+        throw new Error(result.error || "Не удалось отправить заявку.");
+      }
+
+      form.reset();
+      setPhoneValue("+7 ");
+      setSubmitStatus("success");
+      setSubmitMessage("Заявка отправлена. Специалист свяжется с вами.");
+    } catch (error) {
+      setSubmitStatus("error");
+      setSubmitMessage(
+        error instanceof Error
+          ? error.message
+          : "Не удалось отправить заявку. Попробуйте ещё раз.",
+      );
+    }
+  };
+
   return (
     <form
       id={id}
+      onSubmit={handleSubmit}
       className={`bg-white text-[#0E2748] ${
         compact
           ? "border border-[#0E2748]/10 p-4 shadow-[0_28px_75px_rgba(14,39,72,0.16)] ring-1 ring-white/80 sm:p-9"
           : "flex h-full flex-col overflow-hidden md:block md:h-auto md:overflow-visible"
       }`}
     >
+      <input
+        type="text"
+        name="companyUrl"
+        tabIndex={-1}
+        autoComplete="off"
+        className="sr-only"
+        aria-hidden="true"
+      />
       <div
         className={
           compact
@@ -248,6 +326,17 @@ function EstimateForm({ id, compact = false }: EstimateFormProps) {
               type="tel"
               name="phone"
               placeholder="Телефон"
+              value={phoneValue}
+              onChange={(event) =>
+                setPhoneValue(formatRussianPhone(event.target.value))
+              }
+              onFocus={() => {
+                if (!phoneValue) {
+                  setPhoneValue("+7 ");
+                }
+              }}
+              inputMode="tel"
+              autoComplete="tel"
               className={fieldClassName}
             />
           </label>
@@ -272,6 +361,17 @@ function EstimateForm({ id, compact = false }: EstimateFormProps) {
         рассылаем рекламные сообщения.
       </p>
 
+      {submitMessage && (
+        <p
+          className={`mt-4 text-sm font-medium leading-6 ${
+            submitStatus === "success" ? "text-[#0E2748]" : "text-red-600"
+          }`}
+          aria-live="polite"
+        >
+          {submitMessage}
+        </p>
+      )}
+
       {!compact && (
         <div className="mt-6 hidden w-full grid-cols-2 gap-4 md:grid">
           <label className="inline-flex min-h-12 w-full cursor-pointer items-center justify-center gap-2 rounded-sm border-2 border-[#0E2748]/55 bg-white px-5 py-3 text-sm font-semibold text-[#0E2748] transition-all duration-200 hover:border-[#F4A11A] hover:bg-[#F4A11A]/8 hover:shadow-sm focus-within:border-[#F4A11A] focus-within:bg-[#F4A11A]/8">
@@ -295,6 +395,7 @@ function EstimateForm({ id, compact = false }: EstimateFormProps) {
           <CtaButton
             type="submit"
             variant="primary"
+            disabled={submitStatus === "loading"}
             className="w-full px-8"
           >
             Получить смету
@@ -314,6 +415,7 @@ function EstimateForm({ id, compact = false }: EstimateFormProps) {
         <CtaButton
           type="submit"
           variant="primary"
+          disabled={submitStatus === "loading"}
           className={
             compact
               ? "w-full sm:w-auto"
@@ -621,8 +723,8 @@ export function HeroSection() {
         <div className="absolute inset-0 bg-gradient-to-r from-[#F7F9FC]/31 via-[#F7F9FC]/27 to-[#F7F9FC]/22" />
         <div className="absolute inset-0 bg-white/4" />
         <div className="absolute inset-y-0 left-0 w-[62%] bg-gradient-to-r from-white/72 via-white/35 to-transparent" />
-        <TopoLines className="right-[-4rem] top-20 hidden h-72 w-[32rem] lg:block" />
-        <EngineeringGrid className="bottom-14 left-8 hidden h-44 w-72 opacity-40 lg:block" />
+        <TopoLines className="right-[-4rem] top-20 hidden h-72 w-[32rem] opacity-95 lg:block" />
+        <EngineeringGrid className="bottom-14 left-8 hidden h-44 w-72 opacity-60 lg:block" />
 
         <div className="relative mx-auto flex min-h-[calc(100svh-4.625rem)] max-w-7xl flex-col justify-center gap-12 px-4 pb-28 pt-10 sm:px-6 sm:pb-32 sm:pt-14 lg:grid lg:min-h-[calc(100svh-4.5rem)] lg:grid-cols-[minmax(0,540px)_minmax(560px,1fr)] lg:items-center lg:gap-20 lg:px-8 lg:py-24 xl:gap-24">
           <div className="w-full max-w-full min-w-0 lg:max-w-xl">
@@ -671,8 +773,8 @@ export function HeroSection() {
           </div>
 
           <div className="relative mx-auto hidden w-full max-w-[640px] lg:block">
-            <div className="absolute -inset-6 hidden border border-[#0E2748]/8 bg-white/25 backdrop-blur-[2px] lg:block" />
-            <div className="absolute -bottom-5 -right-5 hidden size-28 border-b-2 border-r-2 border-[#F4A11A]/55 lg:block" />
+            <div className="absolute -inset-6 hidden border border-[#0E2748]/12 bg-white/25 backdrop-blur-[2px] lg:block" />
+            <div className="absolute -bottom-5 -right-5 hidden size-28 border-b-2 border-r-2 border-[#F4A11A]/75 lg:block" />
             <div className="relative">
               <CornerMarkers className="-inset-3" />
               <EstimateForm id="hero-estimate-form" compact />

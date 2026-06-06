@@ -44,9 +44,9 @@ export function CredentialsSection() {
     >
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute right-10 top-14 hidden h-40 w-72 bg-[linear-gradient(rgba(14,39,72,0.07)_1px,transparent_1px),linear-gradient(90deg,rgba(14,39,72,0.07)_1px,transparent_1px)] bg-[size:28px_28px] opacity-40 lg:block"
+        className="pointer-events-none absolute right-10 top-14 hidden h-40 w-72 bg-[linear-gradient(rgba(14,39,72,0.105)_1px,transparent_1px),linear-gradient(90deg,rgba(14,39,72,0.105)_1px,transparent_1px)] bg-[size:28px_28px] opacity-60 lg:block"
       />
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl">
           <p className="inline-flex items-center gap-2 text-sm font-semibold text-[#0E2748]/60">
             <span className="size-2 rounded-full bg-[#F4A11A]" />
@@ -63,8 +63,16 @@ export function CredentialsSection() {
 
         <div
           id="yandex-map"
-          className="mt-12 scroll-mt-28 border border-[#0E2748]/10 bg-[#F7F9FC] p-6 shadow-[0_14px_36px_rgba(14,39,72,0.05)] sm:p-8 lg:grid lg:grid-cols-[0.62fr_1.38fr] lg:items-center lg:gap-8"
+          className="relative mt-12 scroll-mt-28 border border-[#0E2748]/10 bg-[#F7F9FC] p-6 shadow-[0_14px_36px_rgba(14,39,72,0.05)] sm:p-8 lg:grid lg:grid-cols-[0.62fr_1.38fr] lg:items-center lg:gap-8"
         >
+          <span
+            aria-hidden="true"
+            className="pointer-events-none absolute left-0 top-0 hidden size-8 border-l-2 border-t-2 border-[#F4A11A]/70 sm:block"
+          />
+          <span
+            aria-hidden="true"
+            className="pointer-events-none absolute bottom-0 right-0 hidden size-8 border-b-2 border-r-2 border-[#F4A11A]/70 sm:block"
+          />
           <div className="max-w-sm">
             <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#F4A11A]">
               Отзывы
@@ -103,8 +111,16 @@ export function CredentialsSection() {
           {credentials.map((credential) => (
             <article
               key={credential.number}
-              className="group flex min-h-64 flex-col border border-[#0E2748]/10 bg-[#F7F9FC] p-6 shadow-[0_12px_32px_rgba(14,39,72,0.05)] transition-all duration-200 hover:-translate-y-[2px] hover:border-[#F4A11A]/50 hover:shadow-[0_18px_40px_rgba(14,39,72,0.09)]"
+              className="group relative flex min-h-64 flex-col border border-[#0E2748]/10 bg-[#F7F9FC] p-6 shadow-[0_12px_32px_rgba(14,39,72,0.05)] transition-all duration-200 hover:-translate-y-[2px] hover:border-[#F4A11A]/50 hover:shadow-[0_18px_40px_rgba(14,39,72,0.09)]"
             >
+              <span
+                aria-hidden="true"
+                className="pointer-events-none absolute left-0 top-0 size-7 border-l-2 border-t-2 border-[#F4A11A]/65 opacity-0 transition-opacity duration-200 group-hover:opacity-100"
+              />
+              <span
+                aria-hidden="true"
+                className="pointer-events-none absolute bottom-0 right-0 size-7 border-b-2 border-r-2 border-[#F4A11A]/65 opacity-0 transition-opacity duration-200 group-hover:opacity-100"
+              />
               <span className="text-xs font-semibold uppercase tracking-[0.16em] text-[#F4A11A]">
                 {credential.number}
               </span>
@@ -138,7 +154,7 @@ export function CredentialsSection() {
           ))}
         </div>
 
-        <details className="mt-10 border border-[#0E2748]/10 bg-[#F7F9FC] p-5 shadow-[0_14px_36px_rgba(14,39,72,0.05)] md:hidden">
+        <details className="mt-10 border border-[#0E2748]/12 bg-[#F7F9FC] p-5 shadow-[0_14px_36px_rgba(14,39,72,0.05)] md:hidden">
           <summary className="cursor-pointer list-none text-xl font-semibold tracking-tight text-[#0E2748]">
             Реквизиты для договора
             <span className="float-right text-[#F4A11A]">+</span>
@@ -151,7 +167,7 @@ export function CredentialsSection() {
             {companyDetails.map(([label, value]) => (
               <div
                 key={label}
-                className="border border-[#0E2748]/8 bg-white/70 px-4 py-3.5 shadow-[0_8px_20px_rgba(14,39,72,0.025)]"
+                className="border border-[#0E2748]/12 border-l-[#F4A11A]/45 bg-white/75 px-4 py-3.5 shadow-[0_8px_20px_rgba(14,39,72,0.025)]"
               >
                 <dt className="text-sm font-medium leading-6 text-[#0E2748]/58">
                   {label}
@@ -164,7 +180,11 @@ export function CredentialsSection() {
           </dl>
         </details>
 
-        <div className="mt-10 hidden border border-[#0E2748]/10 bg-[#F7F9FC] p-6 shadow-[0_14px_36px_rgba(14,39,72,0.05)] md:block sm:p-8">
+        <div className="relative mt-10 hidden border border-[#0E2748]/12 bg-[#F7F9FC] p-6 shadow-[0_14px_36px_rgba(14,39,72,0.05)] md:block sm:p-8">
+          <span
+            aria-hidden="true"
+            className="pointer-events-none absolute left-0 top-0 size-8 border-l-2 border-t-2 border-[#F4A11A]/65"
+          />
           <div className="max-w-2xl">
             <h3 className="text-2xl font-semibold tracking-tight text-[#0E2748]">
               Реквизиты для договора
@@ -178,7 +198,7 @@ export function CredentialsSection() {
             {companyDetails.map(([label, value]) => (
               <div
                 key={label}
-                className="border border-[#0E2748]/8 bg-white/70 px-4 py-3.5 shadow-[0_8px_20px_rgba(14,39,72,0.025)] sm:grid sm:grid-cols-[0.34fr_0.66fr] sm:gap-5"
+                className="border border-[#0E2748]/12 border-l-[#F4A11A]/45 bg-white/75 px-4 py-3.5 shadow-[0_8px_20px_rgba(14,39,72,0.025)] sm:grid sm:grid-cols-[0.34fr_0.66fr] sm:gap-5"
               >
                 <dt className="text-sm font-medium leading-6 text-[#0E2748]/58">
                   {label}

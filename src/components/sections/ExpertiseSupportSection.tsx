@@ -1,3 +1,8 @@
+import {
+  CornerMarkers,
+  TopoLines,
+} from "@/components/ui/EngineeringDecor";
+
 const supportPoints = [
   {
     number: "01",
@@ -36,9 +41,10 @@ export function ExpertiseSupportSection() {
   return (
     <section
       id="expertise"
-      className="scroll-mt-24 bg-white pb-10 pt-6 text-[#0E2748] sm:pb-20 sm:pt-10 lg:pb-24 lg:pt-10"
+      className="relative scroll-mt-24 overflow-hidden bg-white pb-10 pt-6 text-[#0E2748] sm:pb-20 sm:pt-10 lg:pb-24 lg:pt-10"
     >
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <TopoLines className="right-[-9rem] top-20 hidden h-64 w-[34rem] lg:block" />
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl">
           <p className="inline-flex items-center gap-2 text-sm font-semibold text-[#0E2748]/60">
             <span className="size-2 rounded-full bg-[#F4A11A]" />
@@ -55,7 +61,8 @@ export function ExpertiseSupportSection() {
         </div>
 
         <div className="mt-8 grid gap-5 sm:mt-12 sm:gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-stretch lg:gap-10">
-          <div className="flex h-full flex-col border border-[#0E2748]/10 bg-[#F7F9FC] p-4 shadow-[0_14px_36px_rgba(14,39,72,0.05)] sm:p-8">
+          <div className="relative flex h-full flex-col border border-[#0E2748]/10 bg-[#F7F9FC] p-4 shadow-[0_14px_36px_rgba(14,39,72,0.05)] sm:p-8">
+            <CornerMarkers className="hidden opacity-70 sm:block" />
             <h3 className="text-xl font-semibold tracking-tight text-[#0E2748] sm:text-2xl">
               Что происходит после выдачи отчёта
             </h3>
@@ -67,7 +74,8 @@ export function ExpertiseSupportSection() {
               ответственности.
             </p>
 
-            <div className="mt-4 border border-[#F4A11A]/35 border-l-3 bg-white p-4 sm:mt-8 sm:p-5 lg:mt-auto">
+            <div className="relative mt-4 border border-[#F4A11A]/50 border-l-3 bg-white p-4 sm:mt-8 sm:p-5 lg:mt-auto">
+              <CornerMarkers className="opacity-55" />
               <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#F4A11A]">
                 Без опасных обещаний
               </p>
@@ -87,8 +95,9 @@ export function ExpertiseSupportSection() {
               {supportPoints.map((point) => (
                 <article
                   key={point.number}
-                  className="group h-full border border-[#0E2748]/10 bg-white p-3.5 shadow-[0_10px_28px_rgba(14,39,72,0.04)] transition-all duration-200 hover:-translate-y-[2px] hover:border-[#F4A11A]/50 hover:shadow-[0_16px_34px_rgba(14,39,72,0.08)] sm:p-5"
+                  className="group relative h-full border border-[#0E2748]/10 bg-white p-3.5 shadow-[0_10px_28px_rgba(14,39,72,0.04)] transition-all duration-200 hover:-translate-y-[2px] hover:border-[#F4A11A]/50 hover:shadow-[0_16px_34px_rgba(14,39,72,0.08)] sm:p-5"
                 >
+                  <CornerMarkers className="hidden opacity-0 transition-opacity duration-200 group-hover:opacity-100 sm:block" />
                   <span className="text-xs font-semibold uppercase tracking-[0.14em] text-[#F4A11A]">
                     {point.number}
                   </span>
@@ -104,7 +113,8 @@ export function ExpertiseSupportSection() {
           </div>
         </div>
 
-        <div className="mt-6 border border-[#F4A11A]/35 border-l-3 bg-[#F7F9FC] p-4 sm:mt-10 sm:flex sm:items-center sm:justify-between sm:gap-8 sm:p-6">
+        <div className="relative mt-6 border border-[#F4A11A]/50 border-l-3 bg-[#F7F9FC] p-4 sm:mt-10 sm:flex sm:items-center sm:justify-between sm:gap-8 sm:p-6">
+          <CornerMarkers className="hidden opacity-65 sm:block" />
           <div className="max-w-3xl">
             <h3 className="text-xl font-semibold tracking-tight text-[#0E2748]">
               Отвечаем на замечания по выполненным работам
@@ -117,7 +127,8 @@ export function ExpertiseSupportSection() {
           </div>
         </div>
 
-        <div className="mt-8 hidden border border-[#0E2748]/10 bg-white p-6 shadow-[0_12px_32px_rgba(14,39,72,0.04)] md:block">
+        <div className="relative mt-8 hidden border border-[#0E2748]/10 bg-white p-6 shadow-[0_12px_32px_rgba(14,39,72,0.04)] md:block">
+          <CornerMarkers className="opacity-55" />
           <ol className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {processSteps.map((step, index) => (
               <li
