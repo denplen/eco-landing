@@ -4,6 +4,7 @@ import Image from "next/image";
 import {
   useCallback,
   useEffect,
+  useRef,
   useState,
   type FormEvent,
   type MouseEvent,
@@ -111,6 +112,16 @@ const workAreas = [
 const fieldClassName =
   "min-h-11 w-full rounded-sm border border-[#0E2748]/15 bg-white px-3 text-sm text-[#0E2748] outline-none transition-colors placeholder:text-[#0E2748]/35 focus:border-[#F4A11A] focus:shadow-[0_0_0_3px_rgba(244,161,26,0.10)] sm:min-h-12 sm:px-4";
 
+const maxBriefFileSize = 10 * 1024 * 1024;
+
+function formatFileSize(size: number) {
+  if (size < 1024 * 1024) {
+    return `${Math.max(1, Math.round(size / 1024))} КБ`;
+  }
+
+  return `${(size / (1024 * 1024)).toFixed(1).replace(".", ",")} МБ`;
+}
+
 type EstimateFormProps = {
   id?: string;
   compact?: boolean;
@@ -122,6 +133,33 @@ function EstimateForm({ id, compact = false }: EstimateFormProps) {
   >("idle");
   const [submitMessage, setSubmitMessage] = useState("");
   const [phoneValue, setPhoneValue] = useState("+7 ");
+  const [briefFile, setBriefFile] = useState<File | null>(null);
+  const briefInputRefs = useRef<HTMLInputElement[]>([]);
+
+  const clearBriefFile = () => {
+    setBriefFile(null);
+    briefInputRefs.current.forEach((input) => {
+      input.value = "";
+    });
+  };
+
+  const handleBriefFileChange = (file: File | undefined) => {
+    if (!file) {
+      clearBriefFile();
+      return;
+    }
+
+    if (file.size > maxBriefFileSize) {
+      clearBriefFile();
+      setSubmitStatus("error");
+      setSubmitMessage("Файл слишком большой. Максимальный размер — 10 МБ.");
+      return;
+    }
+
+    setBriefFile(file);
+    setSubmitStatus("idle");
+    setSubmitMessage("");
+  };
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -164,6 +202,7 @@ function EstimateForm({ id, compact = false }: EstimateFormProps) {
 
       form.reset();
       setPhoneValue("+7 ");
+      clearBriefFile();
       setSubmitStatus("success");
       setSubmitMessage("Заявка отправлена. Специалист свяжется с вами.");
     } catch (error) {
@@ -372,10 +411,37 @@ function EstimateForm({ id, compact = false }: EstimateFormProps) {
         </p>
       )}
 
+      {briefFile && (
+        <div className="mt-4 flex min-w-0 items-center gap-2 rounded-sm border border-[#0E2748]/10 bg-[#F7F9FC] px-3 py-2 text-xs leading-5 text-[#0E2748]/68">
+          <span className="shrink-0 font-semibold text-[#0E2748]">Файл:</span>
+          <span className="min-w-0 flex-1 truncate">
+            {briefFile.name} · {formatFileSize(briefFile.size)}
+          </span>
+          <button
+            type="button"
+            aria-label="Удалить прикреплённый файл"
+            onClick={clearBriefFile}
+            className="inline-flex size-7 shrink-0 items-center justify-center rounded-sm border border-[#0E2748]/15 bg-white text-base leading-none text-[#0E2748]/60 transition-colors hover:border-[#F4A11A] hover:text-[#0E2748]"
+          >
+            ×
+          </button>
+        </div>
+      )}
+
       {!compact && (
         <div className="mt-6 hidden w-full grid-cols-2 gap-4 md:grid">
           <label className="inline-flex min-h-12 w-full cursor-pointer items-center justify-center gap-2 rounded-sm border-2 border-[#0E2748]/55 bg-white px-5 py-3 text-sm font-semibold text-[#0E2748] transition-all duration-200 hover:border-[#F4A11A] hover:bg-[#F4A11A]/8 hover:shadow-sm focus-within:border-[#F4A11A] focus-within:bg-[#F4A11A]/8">
-            <input type="file" name="brief" className="sr-only" />
+            <input
+              ref={(input) => {
+                if (input) briefInputRefs.current[0] = input;
+              }}
+              type="file"
+              name="brief"
+              className="sr-only"
+              onChange={(event) =>
+                handleBriefFileChange(event.currentTarget.files?.[0])
+              }
+            />
             <svg
               aria-hidden="true"
               className="size-4"
@@ -431,7 +497,17 @@ function EstimateForm({ id, compact = false }: EstimateFormProps) {
               : "order-1 inline-flex min-h-11 w-full cursor-pointer items-center justify-center gap-1.5 rounded-sm border border-[#0E2748]/25 bg-white px-3 py-2.5 text-sm font-semibold text-[#0E2748] transition-all duration-200 hover:border-[#F4A11A] hover:bg-[#F4A11A]/8 hover:shadow-sm focus-within:border-[#F4A11A] focus-within:bg-[#F4A11A]/8 md:order-1 md:min-h-12 md:w-auto md:min-w-[220px] md:gap-2 md:border-2 md:border-[#0E2748]/55 md:px-5 md:py-3"
           }
         >
-          <input type="file" name="brief" className="sr-only" />
+          <input
+            ref={(input) => {
+              if (input) briefInputRefs.current[1] = input;
+            }}
+            type="file"
+            name="brief"
+            className="sr-only"
+            onChange={(event) =>
+              handleBriefFileChange(event.currentTarget.files?.[0])
+            }
+          />
           <svg
             aria-hidden="true"
             className="size-4"
