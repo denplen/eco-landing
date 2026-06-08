@@ -154,10 +154,15 @@ export function CredentialsSection() {
           ))}
         </div>
 
-        <details className="mt-10 border border-[#0E2748]/12 bg-[#F7F9FC] p-5 shadow-[0_14px_36px_rgba(14,39,72,0.05)] md:hidden">
-          <summary className="cursor-pointer list-none text-xl font-semibold tracking-tight text-[#0E2748]">
-            Реквизиты для договора
-            <span className="float-right text-[#F4A11A]">+</span>
+        <details className="group mt-10 border border-[#0E2748]/12 bg-[#F7F9FC] p-5 shadow-[0_14px_36px_rgba(14,39,72,0.05)] md:hidden">
+          <summary className="flex cursor-pointer list-none items-start justify-between gap-4 text-xl font-semibold tracking-tight text-[#0E2748]">
+            <span>Реквизиты для договора</span>
+            <span
+              aria-hidden="true"
+              className="mt-0.5 shrink-0 text-xl leading-5 text-[#F4A11A] transition-transform duration-200 group-hover:translate-x-0.5 group-open:rotate-45"
+            >
+              +
+            </span>
           </summary>
           <p className="mt-3 text-sm leading-6 text-[#0E2748]/65">
             Данные компании для проверки и подготовки договора.

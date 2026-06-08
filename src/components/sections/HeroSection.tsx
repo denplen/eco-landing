@@ -10,6 +10,7 @@ import {
   type MouseEvent,
 } from "react";
 import { CtaButton } from "@/components/ui/CtaButton";
+import { CopyEmailLink } from "@/components/ui/CopyEmailLink";
 import {
   CornerMarkers,
   EngineeringGrid,
@@ -699,27 +700,40 @@ export function HeroSection() {
               >
                 +7 (499) 380-81-04
               </a>
-              <a
-                href="mailto:info@glavgeocom.ru"
-                className="block text-xs text-[#0E2748]/48 transition-colors hover:text-[#0E2748]"
-              >
-                info@glavgeocom.ru
-              </a>
+              <CopyEmailLink
+                email="info@glavgeocom.ru"
+                compact
+                className="justify-end text-xs text-[#0E2748]/48"
+              />
             </div>
 
             <a
-              href="#contacts"
+              href="https://t.me/Glavgeocom"
               aria-label="Связаться в Telegram"
-              className="hidden size-8 items-center justify-center rounded-full border border-[#0E2748]/15 text-[10px] font-bold text-[#0E2748] transition-colors hover:border-[#F4A11A] hover:text-[#F4A11A] lg:inline-flex"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden size-8 items-center justify-center rounded-full border border-[#0E2748]/15 transition-all duration-200 hover:-translate-y-px hover:border-[#F4A11A] hover:shadow-sm lg:inline-flex"
             >
-              TG
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/images/Telegram_logo_icon.svg%201.svg"
+                alt=""
+                aria-hidden="true"
+                className="size-5"
+              />
             </a>
             <a
               href="#contacts"
               aria-label="Связаться в MAX"
-              className="hidden size-8 items-center justify-center rounded-full border border-[#0E2748]/15 text-[10px] font-bold text-[#0E2748] transition-colors hover:border-[#F4A11A] hover:text-[#F4A11A] lg:inline-flex"
+              className="hidden size-8 items-center justify-center rounded-full border border-[#0E2748]/15 transition-all duration-200 hover:-translate-y-px hover:border-[#F4A11A] hover:shadow-sm lg:inline-flex"
             >
-              MAX
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/images/max-app-icon-on-a-transparent-background-free-png%201.svg"
+                alt=""
+                aria-hidden="true"
+                className="size-5"
+              />
             </a>
             <div className="hidden lg:block">
               <CtaButton
@@ -779,6 +793,69 @@ export function HeroSection() {
                 </li>
               ))}
             </ul>
+            <div className="mt-4 border-t border-[#0E2748]/10 pt-4">
+              <p className="px-3 text-xs font-semibold uppercase tracking-[0.14em] text-[#0E2748]/42">
+                Связаться
+              </p>
+              <div className="mt-2 grid gap-2">
+                <a
+                  href="https://t.me/Glavgeocom"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setIsMobileNavOpen(false)}
+                  className="flex min-h-11 items-center gap-3 rounded-sm border border-[#0E2748]/10 px-3 text-sm font-medium text-[#0E2748]/75 transition-colors duration-200 hover:border-[#F4A11A] hover:bg-[#F4A11A]/8 hover:text-[#0E2748]"
+                >
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="/images/Telegram_logo_icon.svg%201.svg"
+                    alt=""
+                    aria-hidden="true"
+                    className="size-5 shrink-0"
+                  />
+                  Написать в Telegram
+                </a>
+                <a
+                  href="#contacts"
+                  onClick={(event) => handleNavClick(event, "#contacts")}
+                  className="flex min-h-11 items-center gap-3 rounded-sm border border-[#0E2748]/10 px-3 text-sm font-medium text-[#0E2748]/75 transition-colors duration-200 hover:border-[#F4A11A] hover:bg-[#F4A11A]/8 hover:text-[#0E2748]"
+                >
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="/images/max-app-icon-on-a-transparent-background-free-png%201.svg"
+                    alt=""
+                    aria-hidden="true"
+                    className="size-5 shrink-0"
+                  />
+                  Написать в MAX
+                </a>
+                <a
+                  href="mailto:info@glavgeocom.ru"
+                  onClick={() => setIsMobileNavOpen(false)}
+                  className="flex min-h-11 items-center gap-3 rounded-sm border border-[#0E2748]/10 px-3 text-sm font-medium text-[#0E2748]/75 transition-colors duration-200 hover:border-[#F4A11A] hover:bg-[#F4A11A]/8 hover:text-[#0E2748]"
+                >
+                  <svg
+                    aria-hidden="true"
+                    className="size-5 shrink-0 text-[#F4A11A]"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M4.75 6.75h14.5v10.5H4.75V6.75Z"
+                    />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="m5.25 7.25 6.75 5.5 6.75-5.5"
+                    />
+                  </svg>
+                  Написать на почту
+                </a>
+              </div>
+            </div>
           </nav>
         )}
         <div className="h-0.5 w-full bg-[#0E2748]/5">

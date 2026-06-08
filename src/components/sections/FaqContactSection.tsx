@@ -1,6 +1,7 @@
 "use client";
 
 import { CtaButton } from "@/components/ui/CtaButton";
+import { CopyEmailLink } from "@/components/ui/CopyEmailLink";
 import {
   CornerMarkers,
   EngineeringGrid,
@@ -48,7 +49,7 @@ const contacts = [
   {
     label: "Telegram",
     value: "Написать в Telegram",
-    href: null,
+    href: "https://t.me/Glavgeocom",
   },
   {
     label: "MAX",
@@ -147,16 +148,47 @@ export function FaqContactSection() {
           <div className="mt-8 lg:mt-0 lg:self-center">
             <div className="grid gap-4 sm:grid-cols-2">
               {contacts.map((contact) =>
-                contact.href ? (
+                contact.label === "Email" ? (
+                  <div key={contact.label} className={contactCardClassName}>
+                    <span className="text-xs font-semibold uppercase tracking-[0.14em] text-[#F4A11A]">
+                      {contact.label}
+                    </span>
+                    <CopyEmailLink
+                      email={contact.value}
+                      truncate={false}
+                      nowrap
+                      className="mt-2 max-w-full text-sm font-medium leading-6 text-white/86 sm:text-base"
+                    />
+                  </div>
+                ) : contact.href ? (
                   <a
                     key={contact.label}
                     href={contact.href}
+                    target={
+                      contact.href.startsWith("https://") ? "_blank" : undefined
+                    }
+                    rel={
+                      contact.href.startsWith("https://")
+                        ? "noopener noreferrer"
+                        : undefined
+                    }
                     className={contactCardClassName}
                   >
                     <span className="text-xs font-semibold uppercase tracking-[0.14em] text-[#F4A11A]">
                       {contact.label}
                     </span>
-                    <span className="mt-2 block text-base font-medium leading-6 text-white/86">
+                    <span className="mt-2 flex items-center gap-2 text-base font-medium leading-6 text-white/86">
+                      {contact.label === "Telegram" && (
+                        <>
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img
+                            src="/images/Telegram_logo_icon.svg%201.svg"
+                            alt=""
+                            aria-hidden="true"
+                            className="size-5 shrink-0"
+                          />
+                        </>
+                      )}
                       {contact.value}
                     </span>
                   </a>
@@ -169,7 +201,18 @@ export function FaqContactSection() {
                     <span className="text-xs font-semibold uppercase tracking-[0.14em] text-[#F4A11A]">
                       {contact.label}
                     </span>
-                    <span className="mt-2 block text-base font-medium leading-6 text-white/86">
+                    <span className="mt-2 flex items-center gap-2 text-base font-medium leading-6 text-white/86">
+                      {contact.label === "MAX" && (
+                        <>
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img
+                            src="/images/max-app-icon-on-a-transparent-background-free-png%201.svg"
+                            alt=""
+                            aria-hidden="true"
+                            className="size-5 shrink-0"
+                          />
+                        </>
+                      )}
                       {contact.value}
                     </span>
                   </button>
