@@ -5,8 +5,10 @@ import {
   formatRussianPhone,
   isRussianPhoneComplete,
 } from "@/lib/phoneMask";
-
-const MAX_FILE_SIZE = 10 * 1024 * 1024;
+import {
+  MAX_LEAD_FILE_SIZE_BYTES,
+  MAX_LEAD_FILE_SIZE_ERROR,
+} from "@/lib/leadFileLimits";
 
 type ChannelStatus = "success" | "failed" | "skipped";
 
@@ -57,11 +59,11 @@ export async function POST(request: Request) {
   const formattedPhone = formatRussianPhone(phone);
   const file = getLeadFile(formData);
 
-  if (file && file.size > MAX_FILE_SIZE) {
+  if (file && file.size > MAX_LEAD_FILE_SIZE_BYTES) {
     return NextResponse.json(
       {
         ok: false,
-        error: "Файл слишком большой. Максимальный размер — 10 МБ.",
+        error: MAX_LEAD_FILE_SIZE_ERROR,
       },
       { status: 400 },
     );

@@ -70,9 +70,6 @@ export function TrustStatsSection() {
               className="group relative overflow-hidden border border-[#0E2748]/10 bg-white p-3.5 shadow-[0_10px_24px_rgba(14,39,72,0.06)] transition-all duration-200 hover:-translate-y-[3px] hover:border-[#F4A11A]/70 hover:shadow-[0_22px_50px_rgba(14,39,72,0.14)] sm:p-5 md:min-h-64 md:p-6"
             >
               <CornerMarkers className="hidden opacity-0 transition-opacity duration-200 group-hover:opacity-100 md:block" />
-              <span className="absolute right-3 top-3 hidden text-[10px] font-semibold uppercase tracking-[0.16em] text-[#0E2748]/25 md:block">
-                OBJ
-              </span>
               <div className="absolute left-0 top-0 h-full w-1 bg-[#F4A11A] opacity-85 transition-opacity duration-200 group-hover:opacity-100" />
               <dd className="text-2xl font-semibold tracking-tight text-[#0E2748] sm:text-4xl">
                 {stat.value}

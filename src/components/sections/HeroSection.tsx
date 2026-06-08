@@ -21,6 +21,10 @@ import {
   isRussianPhoneComplete,
 } from "@/lib/phoneMask";
 import { reachYandexGoal } from "@/lib/analytics/yandexMetrika";
+import {
+  MAX_LEAD_FILE_SIZE_BYTES,
+  MAX_LEAD_FILE_SIZE_ERROR,
+} from "@/lib/leadFileLimits";
 
 const navItems = [
   { label: "Опыт", href: "#experience" },
@@ -114,8 +118,6 @@ const workAreas = [
 const fieldClassName =
   "min-h-11 w-full rounded-sm border border-[#0E2748]/15 bg-white px-3 text-sm text-[#0E2748] outline-none transition-colors placeholder:text-[#0E2748]/35 focus:border-[#F4A11A] focus:shadow-[0_0_0_3px_rgba(244,161,26,0.10)] sm:min-h-12 sm:px-4";
 
-const maxBriefFileSize = 10 * 1024 * 1024;
-
 function formatFileSize(size: number) {
   if (size < 1024 * 1024) {
     return `${Math.max(1, Math.round(size / 1024))} КБ`;
@@ -151,10 +153,10 @@ function EstimateForm({ id, compact = false }: EstimateFormProps) {
       return;
     }
 
-    if (file.size > maxBriefFileSize) {
+    if (file.size > MAX_LEAD_FILE_SIZE_BYTES) {
       clearBriefFile();
       setSubmitStatus("error");
-      setSubmitMessage("Файл слишком большой. Максимальный размер — 10 МБ.");
+      setSubmitMessage(MAX_LEAD_FILE_SIZE_ERROR);
       return;
     }
 
