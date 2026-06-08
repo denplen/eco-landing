@@ -18,6 +18,7 @@ type TelegramLeadPayload = {
 };
 
 const TELEGRAM_API_BASE = "https://api.telegram.org";
+const RELAY_FILE_LIMIT = 4 * 1024 * 1024;
 
 function valueOrDash(value?: string | string[]) {
   if (Array.isArray(value)) {
@@ -84,7 +85,64 @@ async function telegramFetch(path: string, body: FormData) {
   }
 }
 
+async function sendTelegramViaRelay(
+  messageHtml: string,
+  file: File | undefined,
+  fileCaption: string,
+) {
+  const relayUrl = process.env.TELEGRAM_RELAY_URL;
+  const relaySecret = process.env.TELEGRAM_RELAY_SECRET;
+
+  if (!relayUrl || !relaySecret) {
+    throw new Error("Telegram relay is not configured");
+  }
+
+  const relayFormData = new FormData();
+  relayFormData.set("messageHtml", messageHtml);
+
+  if (file) {
+    if (file.size <= RELAY_FILE_LIMIT) {
+      relayFormData.set("file", file);
+      relayFormData.set("fileCaption", fileCaption);
+    } else {
+      console.warn("Telegram relay file skipped: file is larger than 4 MB");
+    }
+  }
+
+  const response = await fetch(relayUrl, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${relaySecret}`,
+    },
+    body: relayFormData,
+  });
+
+  console.log("Telegram relay response", {
+    status: response.status,
+  });
+
+  if (!response.ok) {
+    const errorText = await response.text();
+    throw new Error(`Telegram relay error: ${errorText}`);
+  }
+}
+
 export async function sendTelegramLead(payload: TelegramLeadPayload) {
+  const messageHtml = buildTelegramMessage(payload);
+  const fileCaption = `Файл к заявке: ${valueOrDash(payload.phone || payload.name)}`;
+  const relayEnabled = Boolean(
+    process.env.TELEGRAM_RELAY_URL && process.env.TELEGRAM_RELAY_SECRET,
+  );
+
+  console.log("Telegram delivery", {
+    relayEnabled,
+  });
+
+  if (relayEnabled) {
+    await sendTelegramViaRelay(messageHtml, payload.file, fileCaption);
+    return;
+  }
+
   const chatId = process.env.TELEGRAM_CHAT_ID;
 
   if (!chatId) {

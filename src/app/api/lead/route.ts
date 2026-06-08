@@ -24,7 +24,10 @@ function getLeadFile(formData: FormData) {
 }
 
 function isTelegramConfigured() {
-  return Boolean(process.env.TELEGRAM_BOT_TOKEN && process.env.TELEGRAM_CHAT_ID);
+  return Boolean(
+    (process.env.TELEGRAM_RELAY_URL && process.env.TELEGRAM_RELAY_SECRET) ||
+      (process.env.TELEGRAM_BOT_TOKEN && process.env.TELEGRAM_CHAT_ID),
+  );
 }
 
 export async function POST(request: Request) {
