@@ -20,6 +20,7 @@ import {
   formatRussianPhone,
   isRussianPhoneComplete,
 } from "@/lib/phoneMask";
+import { reachYandexGoal } from "@/lib/analytics/yandexMetrika";
 
 const navItems = [
   { label: "Опыт", href: "#experience" },
@@ -206,6 +207,11 @@ function EstimateForm({ id, compact = false }: EstimateFormProps) {
       clearBriefFile();
       setSubmitStatus("success");
       setSubmitMessage("Заявка отправлена. Специалист свяжется с вами.");
+      reachYandexGoal("lead_success", {
+        form: compact ? "hero" : "modal",
+        has_file: Boolean(briefFile),
+      });
+      window.location.href = "/success";
     } catch (error) {
       setSubmitStatus("error");
       setSubmitMessage(
@@ -552,6 +558,7 @@ export function HeroSection() {
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
 
   const openEstimateModal = useCallback(() => {
+    reachYandexGoal("form_open");
     setIsEstimateModalOpen(true);
     requestAnimationFrame(() => {
       setIsEstimateModalVisible(true);
@@ -696,6 +703,7 @@ export function HeroSection() {
             <div className="hidden text-right lg:block">
               <a
                 href="tel:+74993808104"
+                onClick={() => reachYandexGoal("phone_click")}
                 className="block text-sm font-semibold text-[#0E2748] transition-colors hover:text-[#F4A11A]"
               >
                 +7 (499) 380-81-04
@@ -712,6 +720,7 @@ export function HeroSection() {
               aria-label="Связаться в Telegram"
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => reachYandexGoal("telegram_click")}
               className="hidden size-8 items-center justify-center rounded-full border border-[#0E2748]/15 transition-all duration-200 hover:-translate-y-px hover:border-[#F4A11A] hover:shadow-sm lg:inline-flex"
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -802,7 +811,10 @@ export function HeroSection() {
                   href="https://t.me/Glavgeocom"
                   target="_blank"
                   rel="noopener noreferrer"
-                  onClick={() => setIsMobileNavOpen(false)}
+                  onClick={() => {
+                    reachYandexGoal("telegram_click");
+                    setIsMobileNavOpen(false);
+                  }}
                   className="flex min-h-11 items-center gap-3 rounded-sm border border-[#0E2748]/10 px-3 text-sm font-medium text-[#0E2748]/75 transition-colors duration-200 hover:border-[#F4A11A] hover:bg-[#F4A11A]/8 hover:text-[#0E2748]"
                 >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -830,7 +842,10 @@ export function HeroSection() {
                 </a>
                 <a
                   href="mailto:info@glavgeocom.ru"
-                  onClick={() => setIsMobileNavOpen(false)}
+                  onClick={() => {
+                    reachYandexGoal("email_click");
+                    setIsMobileNavOpen(false);
+                  }}
                   className="flex min-h-11 items-center gap-3 rounded-sm border border-[#0E2748]/10 px-3 text-sm font-medium text-[#0E2748]/75 transition-colors duration-200 hover:border-[#F4A11A] hover:bg-[#F4A11A]/8 hover:text-[#0E2748]"
                 >
                   <svg
@@ -940,6 +955,7 @@ export function HeroSection() {
         <div className="grid grid-cols-2 gap-2">
           <a
             href="tel:+74993808104"
+            onClick={() => reachYandexGoal("phone_click")}
             className="inline-flex min-h-11 items-center justify-center rounded-sm border border-[#0E2748]/20 bg-white px-3 text-sm font-semibold text-[#0E2748]"
           >
             Позвонить

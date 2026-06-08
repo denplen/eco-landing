@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { reachYandexGoal } from "@/lib/analytics/yandexMetrika";
 
 type CopyEmailLinkProps = {
   email: string;
@@ -46,6 +47,7 @@ export function CopyEmailLink({
       }
 
       setCopied(true);
+      reachYandexGoal("email_copy");
     } catch {
       setCopied(false);
     }
@@ -57,6 +59,7 @@ export function CopyEmailLink({
     >
       <a
         href={`mailto:${email}`}
+        onClick={() => reachYandexGoal("email_click")}
         className={`transition-colors duration-200 hover:text-[#F4A11A] ${
           truncate
             ? "min-w-0 truncate"

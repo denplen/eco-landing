@@ -6,6 +6,7 @@ import {
   EngineeringGrid,
   TopoLines,
 } from "@/components/ui/EngineeringDecor";
+import { reachYandexGoal } from "@/lib/analytics/yandexMetrika";
 
 const workStages = [
   {
@@ -173,6 +174,7 @@ export function ScopeAndDeliverablesSection() {
               href="https://glavgeocom.ru/netcat_files/4/22/TO_Ekologicheskie_izyskaniya_primer_.pdf"
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => reachYandexGoal("report_click")}
               className="mt-4 inline-flex min-h-10 items-center justify-center rounded-sm border border-[#0E2748]/30 bg-white px-4 py-2.5 text-sm font-semibold text-[#0E2748] transition-colors duration-200 hover:border-[#F4A11A] hover:bg-[#F4A11A]/5"
             >
               Посмотреть пример отчёта
@@ -230,6 +232,7 @@ export function ScopeAndDeliverablesSection() {
               href="https://glavgeocom.ru/netcat_files/4/22/TO_Ekologicheskie_izyskaniya_primer_.pdf"
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => reachYandexGoal("report_click")}
               className="mt-4 inline-flex min-h-10 shrink-0 items-center justify-center gap-2 rounded-sm border border-[#0E2748]/30 bg-white px-4 py-2.5 text-sm font-semibold text-[#0E2748] transition-colors duration-200 hover:border-[#F4A11A] hover:bg-[#F4A11A]/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#F4A11A] sm:mt-0"
             >
               <svg

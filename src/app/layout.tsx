@@ -1,5 +1,6 @@
 import "./globals.css";
 import type { Metadata } from "next";
+import { YandexMetrika } from "@/components/analytics/YandexMetrika";
 
 export const metadata: Metadata = {
   title: "Инженерно-экологические изыскания в Москве и МО — Главгеоком",
@@ -45,7 +46,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ru">
-      <body>{children}</body>
+      <body>
+        {children}
+        <YandexMetrika />
+      </body>
     </html>
   );
 }

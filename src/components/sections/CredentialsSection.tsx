@@ -1,4 +1,8 @@
-﻿const yandexMapUrl =
+﻿"use client";
+
+import { reachYandexGoal } from "@/lib/analytics/yandexMetrika";
+
+const yandexMapUrl =
   "https://yandex.ru/map-widget/v1/?z=12&ol=biz&oid=132077742495";
 
 const credentials = [
@@ -139,6 +143,15 @@ export function CredentialsSection() {
                     rel={
                       credential.isExternal ? "noopener noreferrer" : undefined
                     }
+                    onClick={() => {
+                      if (credential.href.includes("nopriz.ru")) {
+                        reachYandexGoal("nopriz_click");
+                      }
+
+                      if (credential.href.includes("nashi-obekty")) {
+                        reachYandexGoal("objects_click");
+                      }
+                    }}
                     className={secondaryActionClassName}
                   >
                     {credential.action}

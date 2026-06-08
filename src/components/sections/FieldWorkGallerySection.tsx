@@ -1,8 +1,11 @@
+"use client";
+
 import Image from "next/image";
 import {
   CornerMarkers,
   EngineeringGrid,
 } from "@/components/ui/EngineeringDecor";
+import { reachYandexGoal } from "@/lib/analytics/yandexMetrika";
 
 const reportExampleUrl =
   "https://glavgeocom.ru/netcat_files/4/22/TO_Ekologicheskie_izyskaniya_primer_.pdf";
@@ -121,6 +124,7 @@ export function FieldWorkGallerySection() {
                 href={reportExampleUrl}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => reachYandexGoal("report_click")}
                 className="mt-5 inline-flex min-h-10 items-center justify-center rounded-sm border border-[#0E2748]/30 bg-white px-4 py-2.5 text-sm font-semibold text-[#0E2748] transition-colors duration-200 hover:border-[#F4A11A] hover:bg-[#F4A11A]/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#F4A11A]"
               >
                 Посмотреть пример отчёта

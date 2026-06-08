@@ -6,6 +6,7 @@ import {
   CornerMarkers,
   EngineeringGrid,
 } from "@/components/ui/EngineeringDecor";
+import { reachYandexGoal } from "@/lib/analytics/yandexMetrika";
 
 const faqItems = [
   {
@@ -153,12 +154,14 @@ export function FaqContactSection() {
                     <span className="text-xs font-semibold uppercase tracking-[0.14em] text-[#F4A11A]">
                       {contact.label}
                     </span>
-                    <CopyEmailLink
-                      email={contact.value}
-                      truncate={false}
-                      nowrap
-                      className="mt-2 max-w-full text-sm font-medium leading-6 text-white/86 sm:text-base"
-                    />
+                    <div className="mt-2 min-w-0">
+                      <CopyEmailLink
+                        email={contact.value}
+                        truncate={false}
+                        nowrap
+                        className="max-w-full text-sm font-medium leading-6 text-white/86 sm:text-base"
+                      />
+                    </div>
                   </div>
                 ) : contact.href ? (
                   <a
@@ -172,6 +175,15 @@ export function FaqContactSection() {
                         ? "noopener noreferrer"
                         : undefined
                     }
+                    onClick={() => {
+                      if (contact.href === "tel:+74993808104") {
+                        reachYandexGoal("phone_click");
+                      }
+
+                      if (contact.href === "https://t.me/Glavgeocom") {
+                        reachYandexGoal("telegram_click");
+                      }
+                    }}
                     className={contactCardClassName}
                   >
                     <span className="text-xs font-semibold uppercase tracking-[0.14em] text-[#F4A11A]">
