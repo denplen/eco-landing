@@ -20,7 +20,10 @@ import {
   formatRussianPhone,
   isRussianPhoneComplete,
 } from "@/lib/phoneMask";
-import { reachYandexGoal } from "@/lib/analytics/yandexMetrika";
+import {
+  reachYandexGoal,
+  reachYandexGoalAsync,
+} from "@/lib/analytics/yandexMetrika";
 import {
   MAX_LEAD_FILE_SIZE_BYTES,
   MAX_LEAD_FILE_SIZE_ERROR,
@@ -209,7 +212,7 @@ function EstimateForm({ id, compact = false }: EstimateFormProps) {
       clearBriefFile();
       setSubmitStatus("success");
       setSubmitMessage("Заявка отправлена. Специалист свяжется с вами.");
-      reachYandexGoal("lead_success", {
+      await reachYandexGoalAsync("lead_success", {
         form: compact ? "hero" : "modal",
         has_file: Boolean(briefFile),
       });
