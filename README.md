@@ -1,5 +1,9 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+Production ecological landing: **https://eco.glavgeocom.ru/**.
+The corporate website at `https://glavgeocom.ru/` is a separate project.
+See [SEO policy and verification](docs/seo.md) for canonical URLs and technical-domain indexing rules.
+
 ## Getting Started
 
 First, run the development server:
