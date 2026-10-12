@@ -1,8 +1,10 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { YandexMetrika } from "@/components/analytics/YandexMetrika";
+import { SITE_ORIGIN } from "@/lib/site";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_ORIGIN),
   title: "Инженерно-экологические изыскания в Москве и МО — Главгеоком",
   description:
     "Подготовим технический отчёт для проектирования и поможем закрыть замечания экспертизы по инженерно-экологическим изысканиям.",
@@ -20,7 +22,7 @@ export const metadata: Metadata = {
     title: "Инженерно-экологические изыскания — Главгеоком",
     description:
       "Инженерно-экологические изыскания для застройщиков, технических заказчиков и проектировщиков. Смета по параметрам объекта.",
-    url: "https://eco-landing-five.vercel.app/",
+    url: "/",
     siteName: "Главгеоком",
     images: "/og-image.png",
     locale: "ru_RU",
